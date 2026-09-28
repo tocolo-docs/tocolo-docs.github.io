@@ -147,19 +147,19 @@ td.c{ text-align:center; font-weight:700; }
   </ol>
   <div class="note"><b>更新のとき</b>　体験版と Pro は必ず同じ版に揃えてください。Pro は体験版の内部の仕組みを使っているため、片方だけ新しいとコンパイルエラーになることがあります。</div>
   <h3><span class="nb">Tocolo</span> をアバターから削除したいとき</h3>
-  <p><span class="nb">Tocolo</span> のコンポーネントは、最初のクリックで編集を作ったときにアバターのルートへ自動で付きます。色変えをすべてやめたいときは、アバターのルートにある「<span class="nb">Tocolo</span>」コンポーネントを <span class="nb">Inspector</span> の右クリックメニューから <b><span class="nb">Remove Component</span></b> で外してください。編集はコンポーネントと一緒に消え、元のテクスチャ・マテリアルはそのまま残ります（非破壊なので、外すだけで元の見た目に戻ります）。</p>
+  <p><span class="nb">Tocolo</span> のコンポーネントは、最初のクリックで編集を作ったときにアバターのルートへ自動で付きます。色変えをすべてやめたいときは、アバターのルートにある「<span class="nb">Tocolo</span>」コンポーネントを <span class="nb">Inspector</span> の右クリックメニューから <b><span class="nb">Remove Component</span></b> で外してください。編集はコンポーネントと一緒に消え、元のテクスチャ・マテリアルはそのまま残ります（外すだけで元の見た目に戻ります）。</p>
   <div class="two">
     <div><div class="fig" style="padding:4px"><img src="img/fig2.png" alt="Inspector の Tocolo コンポーネント"></div><div class="cap"><span class="nb">図 2</span>　<span class="nb">Inspector</span> の <span class="nb">Tocolo</span> コンポーネント（編集一覧・書き出し・プレビュー設定・選択しない <span class="nb">Renderer</span>）</div></div>
     <div>
       <h3><span class="nb">Inspector</span> の項目</h3>
-      <dl class="term">
+      <dl class="term" style="font-size:9.5pt;line-height:1.6">
         <dt><span class="nb">Scene</span> で色を変える</dt><dd><span class="nb">Scene 編集</span>を開始します（Play 中・<span class="nb">Prefab</span> 編集モード中は押せません）</dd>
         <dt>編集一覧</dt><dd>作った編集の有効／無効、名前、並べ替え、削除、「<span class="nb">Scene</span> で選ぶ」</dd>
         <dt>選択しない <span class="nb">Renderer</span></dt><dd><span class="nb">Scene</span> で選ばれなくする <span class="nb">Renderer</span> の一覧（4 章）</dd>
-        <dt>プレビューの解像度</dt><dd><span class="nb">Scene</span> プレビューで使う解像度の上限。小さいほど軽く動きます。アップロードと書き出しは元の解像度</dd>
-        <dt>プレビューを表示</dt><dd>OFF にすると <span class="nb">Scene</span> の表示が元に戻ります（編集は残ります）</dd>
+        <dt>プレビューの解像度</dt><dd><span class="nb">Scene</span> プレビューの解像度の上限。小さいほど軽く動きます</dd>
+        <dt>プレビューを表示</dt><dd>OFF で <span class="nb">Scene</span> の表示が元に戻ります（編集は残ります）</dd>
         <dt>ビルド時に適用</dt><dd>アップロード時に反映するか <span class="tag pro">Pro</span></dd>
-        <dt>生成テクスチャの圧縮</dt><dd>アップロード時・書き出し時に生成するテクスチャの圧縮形式。PC と Quest で別々に選べます（8 章） <span class="tag pro">Pro</span></dd>
+        <dt>生成テクスチャの圧縮</dt><dd>生成するテクスチャの圧縮形式。PC／Quest 別（8 章） <span class="tag pro">Pro</span></dd>
       </dl>
     </div>
   </div>
