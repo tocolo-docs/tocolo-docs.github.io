@@ -1,0 +1,393 @@
+<title>Tocolo 操作説明書</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+<style>
+:root{
+  --paper:#FCFCFA; --ink:#1F2328; --muted:#5F6B7A; --rule:#D9DCE1;
+  --range:#3D6FB4; --range-bg:#EAF0F8; --color:#B5652E; --color-bg:#F8EFE7;
+  --pro:#8B5CF6; --pro-bg:#F3EEFF; --warn:#9A5B00; --warn-bg:#FFF6DF; --fig-bg:#F1F2F4;
+  --shadow:0 2px 14px rgba(20,30,50,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --paper:#1B1E24; --ink:#EDEFF2; --muted:#A5ADB8; --rule:#3A3F48; --range-bg:#22304A; --color-bg:#3B2A1E; --pro:#B49CFF; --pro-bg:#33294F; --warn-bg:#3A2E10; --warn:#E8B45A; --fig-bg:#262A32; --shadow:0 2px 14px rgba(0,0,0,.5); color-scheme:dark; }
+}
+:root[data-theme="dark"]{ --paper:#1B1E24; --ink:#EDEFF2; --muted:#A5ADB8; --rule:#3A3F48; --range-bg:#22304A; --color-bg:#3B2A1E; --pro:#B49CFF; --pro-bg:#33294F; --warn-bg:#3A2E10; --warn:#E8B45A; --fig-bg:#262A32; --shadow:0 2px 14px rgba(0,0,0,.5); color-scheme:dark; }
+body{ word-break:auto-phrase; line-break:strict; overflow-wrap:anywhere; background:var(--paper); color:var(--ink); font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif; font-size:10.5pt; line-height:1.75; padding-block:24px; padding-inline:16px; }
+.doc{ display:flex; flex-direction:column; gap:24px; align-items:center; }
+.page{ box-sizing:border-box; width:210mm; max-width:100%; min-height:297mm; padding:16mm 16mm 24mm; background:var(--paper); box-shadow:var(--shadow); position:relative; display:flex; flex-direction:column; gap:12px; page-break-after:always; break-after:page; }
+.page:last-child{ page-break-after:auto; break-after:auto; }
+.foot{ position:absolute; left:16mm; right:16mm; bottom:12mm; padding-top:8px; border-top:1px solid var(--rule); display:flex; justify-content:space-between; font-size:8.5pt; color:var(--muted); background:var(--paper); }
+h1,h2,h3{ font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif; text-wrap:balance; margin:0; line-height:1.3; }
+h1{ font-size:30pt; font-weight:900; letter-spacing:.01em; }
+h2{ font-size:16pt; font-weight:700; padding-bottom:6px; border-bottom:2px solid var(--ink); margin-top:4px; }
+h3{ font-size:12pt; font-weight:700; margin-top:6px; }
+p{ margin:0; max-width:68ch; }
+ul,ol{ margin:0; padding-left:1.5em; max-width:68ch; }
+li{ margin:2px 0; }
+.eyebrow{ font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+.hue{ height:10px; border-radius:5px; background:linear-gradient(90deg,#f33,#fc0,#3d3,#3cf,#33f,#f3c,#f33); }
+.cover{ justify-content:center; gap:22px; }
+.cover .sub{ font-size:14pt; color:var(--muted); }
+.cover .meta{ font-size:9.5pt; color:var(--muted); display:grid; grid-template-columns:auto 1fr; gap:4px 16px; }
+kbd{ font-family:ui-monospace,"Consolas",monospace; font-size:.85em; padding:1px 6px; border:1px solid var(--rule); border-bottom-width:2px; border-radius:4px; background:var(--fig-bg); }
+.tag{ display:inline-block; font-size:9.5pt; font-weight:700; letter-spacing:.06em; padding:2px 9px; border-radius:999px; vertical-align:middle; border:1.5px solid currentColor; line-height:1.3; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.tag.range{ background:var(--range-bg); color:var(--range); } .tag.color{ background:var(--color-bg); color:var(--color); } .tag.pro{ background:var(--pro-bg); color:var(--pro); }
+.block{ border-left:4px solid var(--rule); padding:8px 12px; background:var(--fig-bg); border-radius:0 6px 6px 0; }
+.block.range{ border-color:var(--range); background:var(--range-bg); } .block.color{ border-color:var(--color); background:var(--color-bg); } .block.pro{ border-color:var(--pro); background:var(--pro-bg); }
+.note{ border-left:4px solid var(--warn); background:var(--warn-bg); padding:8px 12px; border-radius:0 6px 6px 0; font-size:9.5pt; }
+.note b{ color:var(--warn); }
+.two{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+.steps{ counter-reset:step; display:flex; flex-direction:column; gap:8px; max-width:none; padding:0; list-style:none; }
+.steps li{ display:grid; grid-template-columns:26px 1fr; gap:10px; align-items:start; }
+.steps li::before{ counter-increment:step; content:counter(step); width:24px; height:24px; border-radius:50%; background:var(--ink); color:var(--paper); font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; font-family:"Zen Kaku Gothic New",sans-serif; }
+.fig{ background:var(--fig-bg); border:1.5px dashed var(--rule); border-radius:6px; min-height:120px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:var(--muted); font-size:9pt; text-align:center; padding:10px; }
+.fig .n{ font-weight:700; color:var(--ink); }
+.fig img{ max-width:100%; height:auto; border-radius:4px; }
+.cap{ font-size:8.5pt; color:var(--muted); margin-top:4px; }
+table{ border-collapse:collapse; width:100%; font-size:9.5pt; }
+th,td{ border-bottom:1px solid var(--rule); padding:5px 8px; text-align:left; vertical-align:top; }
+th{ font-size:8.5pt; letter-spacing:.06em; color:var(--muted); }
+td.c{ text-align:center; font-weight:700; }
+.toc{ display:grid; grid-template-columns:auto 1fr auto; gap:4px 12px; max-width:none; }
+.toc .d{ border-bottom:1px dotted var(--rule); }
+.term{ display:grid; grid-template-columns:120px 1fr; gap:4px 14px; max-width:none; }
+.term dt{ font-weight:700; } .term dd{ margin:0; }
+.shots{ font-size:9pt; }
+.nb{ white-space:nowrap; }
+@media (max-width:640px){ .two{ grid-template-columns:1fr; } .page{ min-height:auto; padding:20px 16px 56px; } .term{ grid-template-columns:1fr; } .foot{ left:16px; right:16px; bottom:16px; } }
+@media print{
+  @page{ size:A4; margin:0; }
+  body{ padding:0; background:#fff; color:#111; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .block,.note,.fig,.tag,.hue,.steps li::before{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .doc{ gap:0; }
+  /* 各ページは A4 の固定高さ。@page margin:0 が効く環境（ローカルの HTML をブラウザで印刷）で 1 章 = 1 ページになる */
+  .page{ box-shadow:none; width:210mm; min-height:297mm; height:297mm; overflow:hidden; }
+  .fig{ min-height:0; }
+  .fig{ break-inside:avoid; }
+}
+</style>
+
+<div class="doc">
+
+<!-- 表紙 -->
+<section class="page cover">
+  <div class="eyebrow">操作説明書</div>
+  <h1><span class="nb">Tocolo</span>（トコロ）</h1>
+  <div class="hue"></div>
+  <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
+  <div class="meta">
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.1.9</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.1.9</span></span>
+    <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
+    <span>作者</span><span>nekoare</span>
+    <span>更新</span><span>2026-09-28</span>
+  </div>
+  <div class="foot"><span><span class="nb">Tocolo</span> 操作説明書</span><span>表紙</span></div>
+</section>
+
+<!-- 目次 -->
+<section class="page">
+  <h2>目次</h2>
+  <div class="toc">
+    <span>1</span><span class="d"><span class="nb">Tocolo</span> でできること・体験版と Pro の違い</span><span>3</span>
+    <span>2</span><span class="d">導入と削除のしかた</span><span>4</span>
+    <span>3</span><span class="d">基本操作（開始・クリック・色を選ぶ・終了）</span><span>5</span>
+    <span>4</span><span class="d">範囲の調整（影響範囲・複数選択・除外リスト）</span><span>6</span>
+    <span>5</span><span class="d">色の調整（<span class="nb">色 1／色 2</span>・陰影・不透明度・スポイト）</span><span>7</span>
+    <span>6</span><span class="d">グラデーション</span><span>9</span>
+    <span>7</span><span class="d">対象アバターとオーバーレイの操作</span><span>10</span>
+    <span>8</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>11</span>
+    <span>9</span><span class="d">注意事項とトラブルシューティング</span><span>12</span>
+    <span>10</span><span class="d">用語と操作の一覧</span><span>13</span>
+  </div>
+  <h3>この説明書の読み方</h3>
+  <ul>
+    <li><span class="nb">Scene</span> の左上に出る「<span class="nb">Tocolo</span>」パネルは、上の青い「範囲」ブロック <span class="tag range">範囲</span> と、下の暖色の「色」ブロック <span class="tag color">色</span> に分かれています。本書でもこの 2 色で区別します。</li>
+    <li><span class="tag pro">Pro</span> が付いた項目は有料版（<span class="nb">Tocolo Pro</span>）を入れたときだけ使えます。</li>
+    <li>パネルの各項目には <kbd>?</kbd> ボタンがあり、押すとその場で説明が出ます。本書は <kbd>?</kbd> の内容をまとめて読める形にしたものです。</li>
+  </ul>
+  <div class="foot"><span><span class="nb">Tocolo</span> 操作説明書</span><span>2</span></div>
+</section>
+
+<!-- 1 -->
+<section class="page">
+  <h2>1. <span class="nb">Tocolo</span> でできること</h2>
+  <p>アバターの <span class="nb">Scene</span> 上の見た目をクリックして、そこに使われているメインテクスチャの一部の色を変えます。元の陰影（明暗の分布）はそのまま残るので、塗り直したような不自然さが出ません。処理は <span class="nb">NDMF</span> による非破壊で、シーン上の元のテクスチャ・マテリアルは一切書き換えません。</p>
+  <div class="two">
+    <div>
+      <h3>こんなときに</h3>
+      <ul>
+        <li>衣装の一部だけ色を変えて、髪や小物と合わせたい</li>
+        <li>同じテクスチャを使う別のパーツは元の色のまま残したい</li>
+        <li>上から下へ色が変わるグラデーションをテクスチャを描かずに入れたい</li>
+        <li>色の候補をいくつも試して、決まったものだけアップロードしたい</li>
+      </ul>
+    </div>
+    <div><div class="fig" style="padding:4px"><img src="img/fig1.png" alt="色変え前後の比較" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">図 1</span>　アバターの左半分が変更前、右半分が <span class="nb">Tocolo</span> で髪の色を変えた後（プレビュー表示）。陰影はそのまま残る</div></div>
+  </div>
+  <h3>体験版と Pro の違い</h3>
+  <table>
+    <tr><th></th><th>体験版（無料）</th><th><span class="nb">Tocolo Pro</span></th></tr>
+    <tr><td><span class="nb">Scene</span> でクリックして範囲を選ぶ・色を変える</td><td class="c">○</td><td class="c">○</td></tr>
+    <tr><td>グラデーション・除外リスト・複数選択</td><td class="c">○</td><td class="c">○</td></tr>
+    <tr><td><span class="nb">NDMF</span> プレビュー（<span class="nb">Scene</span> に結果を表示）</td><td class="c">○</td><td class="c">○</td></tr>
+    <tr><td>アップロード時に反映</td><td class="c">×</td><td class="c">○</td></tr>
+    <tr><td>書き出し（メイン／<span class="nb">lilToon</span> <span class="nb">2nd</span>／マスク）</td><td class="c">×</td><td class="c">○</td></tr>
+  </table>
+  <p>体験版では、色を変えた状態でアップロードしても元の色のままアップロードされます（アップロード自体は失敗しません。<span class="nb">NDMF</span> の報告ウィンドウに案内が出ます）。Pro を追加すると、体験版で作った編集はそのまま引き継がれます。</p>
+  <div class="foot"><span>1. <span class="nb">Tocolo</span> でできること</span><span>3</span></div>
+</section>
+
+<!-- 2 -->
+<section class="page">
+  <h2>2. 導入と削除のしかた</h2>
+  <h3>インストール</h3>
+  <ol class="steps">
+    <li><span>ダウンロードしたファイルに入っている「…を<span class="nb">VCC</span>・<span class="nb">ALCOM</span>に追加.url」をダブルクリックします。<span class="nb">VCC または ALCOM</span> が開き、リポジトリの追加画面になるので［Add］（追加）を押します。</span></li>
+    <li><span><span class="nb">VCC／ALCOM</span> が開かない場合は、同梱の案内に書かれたリンクをコピーして、<span class="nb">VCC／ALCOM</span> の「<span class="nb">Add Repository</span>」に貼り付けてください。</span></li>
+    <li><span>プロジェクトに「<span class="nb">Tocolo</span>」を追加します。Pro を購入した場合は購入者向けの .url を使うと、「<span class="nb">Tocolo</span>」と「<span class="nb">Tocolo Pro</span>」の両方が同じ一覧に出ます。<span class="nb">NDMF</span> が入っていなければ一緒に入ります。</span></li>
+  </ol>
+  <div class="note"><b>更新のとき</b>　体験版と Pro は必ず同じ版に揃えてください。Pro は体験版の内部の仕組みを使っているため、片方だけ新しいとコンパイルエラーになることがあります。</div>
+  <h3><span class="nb">Tocolo</span> をアバターから削除したいとき</h3>
+  <p><span class="nb">Tocolo</span> のコンポーネントは、最初のクリックで編集を作ったときにアバターのルートへ自動で付きます。色変えをすべてやめたいときは、アバターのルートにある「<span class="nb">Tocolo</span>」コンポーネントを <span class="nb">Inspector</span> の右クリックメニューから <b><span class="nb">Remove Component</span></b> で外してください。編集はコンポーネントと一緒に消え、元のテクスチャ・マテリアルはそのまま残ります（非破壊なので、外すだけで元の見た目に戻ります）。</p>
+  <div class="two">
+    <div><div class="fig" style="padding:4px"><img src="img/fig2.png" alt="Inspector の Tocolo コンポーネント"></div><div class="cap"><span class="nb">図 2</span>　<span class="nb">Inspector</span> の <span class="nb">Tocolo</span> コンポーネント（編集一覧・書き出し・プレビュー設定・選択しない <span class="nb">Renderer</span>）</div></div>
+    <div>
+      <h3><span class="nb">Inspector</span> の項目</h3>
+      <dl class="term">
+        <dt><span class="nb">Scene</span> で色を変える</dt><dd><span class="nb">Scene 編集</span>を開始します（Play 中・<span class="nb">Prefab</span> 編集モード中は押せません）</dd>
+        <dt>編集一覧</dt><dd>作った編集の有効／無効、名前、並べ替え、削除、「<span class="nb">Scene</span> で選ぶ」</dd>
+        <dt>選択しない <span class="nb">Renderer</span></dt><dd><span class="nb">Scene</span> で選ばれなくする <span class="nb">Renderer</span> の一覧（4 章）</dd>
+        <dt>プレビューの解像度</dt><dd><span class="nb">Scene</span> プレビューで使う解像度の上限。小さいほど軽く動きます。アップロードと書き出しは元の解像度</dd>
+        <dt>プレビューを表示</dt><dd>OFF にすると <span class="nb">Scene</span> の表示が元に戻ります（編集は残ります）</dd>
+        <dt>ビルド時に適用</dt><dd>アップロード時に反映するか <span class="tag pro">Pro</span></dd>
+      </dl>
+    </div>
+  </div>
+  <div class="foot"><span>2. 導入と削除のしかた</span><span>4</span></div>
+</section>
+
+<!-- 3 -->
+<section class="page">
+  <h2>3. 基本操作</h2>
+  <ol class="steps">
+    <li><span><b><span class="nb">Scene 編集</span>を始める</b>　<span class="nb">Scene</span> ビュー左上のツールバーにある色相環アイコンを押すか、<span class="nb">Inspector</span> の［<span class="nb">Scene</span> で色を変える］を押します。左上に「<span class="nb">Tocolo</span>」パネル、右下に「<span class="nb">Tocolo</span>: 操作」の案内が出ます。</span></li>
+    <li><span><b>対象アバターを決める</b>　シーンにアバターが 1 体なら自動で対象になります。複数あるときはパネルの候補ボタンから選ぶか、<span class="nb">Scene</span> のモデルを直接クリックします。無効化したアバターと、<span class="nb">Hierarchy</span> の目のマークで隠したアバターは候補に出ません。</span></li>
+    <li><span><b>色を変えたいところをクリック</b>　クリックした場所を含む範囲が選ばれ、「範囲を表示」が ON なら縞模様で <span class="nb">Scene</span> に表示されます。マウスを乗せると丸印が出て、どこが当たるか分かります。</span></li>
+    <li><span><b>色を選ぶ</b>　パネルのカラーホイールで色を選ぶと、<span class="nb">Scene</span> のプレビューにすぐ反映されます。カラーコードの入力、最近使った 5 色、スポイトからも選べます。</span></li>
+    <li><span><b>続けて編集する</b>　別の場所をクリックすると新しい編集になります。色を決めた編集の範囲をもう一度クリックすると、その編集を選び直して設定を変えられます。同じ場所に重ねて新しい編集を作りたいときは <kbd>Shift</kbd>＋クリックです。</span></li>
+    <li><span><b>終了する</b>　<kbd>Esc</kbd> か、右下の［終了する］を押します。色を決めないまま終了した編集は残りません。</span></li>
+  </ol>
+  <div><div class="fig" style="padding:4px"><img src="img/fig3.png" alt="Scene 編集中の画面全体" style="max-height:68mm;width:auto"></div><div class="cap"><span class="nb">図 3</span>　<span class="nb">Scene 編集</span>中の画面。左上のツールバーのアイコン（左の丸）で開始し、右の「<span class="nb">Tocolo</span>」パネルで範囲と色を調整する。右下は操作の案内。モデル上の小さな丸がクリック位置</div></div>
+  <div class="two">
+    <div><div class="fig" style="padding:4px"><img src="img/fig4.png" alt="クリック直後の縞模様" style="max-height:44mm;width:auto"></div><div class="cap"><span class="nb">図 4</span>　クリック直後。「範囲を表示」ON のとき、選ばれた範囲が縞模様で表示される</div></div>
+    <div class="note"><b>元に戻す</b>　編集の追加・色の変更・箱の操作はすべて <kbd>Ctrl</kbd>+<kbd>Z</kbd> で戻せます。</div>
+  </div>
+  <div class="foot"><span>3. 基本操作</span><span>5</span></div>
+</section>
+
+<!-- 4 -->
+<section class="page">
+  <h2>4. 範囲の調整 <span class="tag range">範囲</span></h2>
+  <h3>影響範囲（3 モード）</h3>
+  <table>
+    <tr><th>モード</th><th>選ばれる範囲</th><th>向いている場面</th></tr>
+    <tr><td><b>パーツ</b></td><td>クリックしたパーツ（<span class="nb">UV</span> のひとかたまり）をまるごと</td><td>袖・襟・リボンなど、パーツ単位で変えたいとき</td></tr>
+    <tr><td><b>同じ色</b></td><td>クリックした場所とほぼ同じ色で、途切れずにつながる部分</td><td>模様や線、単色の帯</td></tr>
+    <tr><td><b>似た色</b></td><td>近い色を広めに。しきい値を大きめに取った状態</td><td>グラデーションや影のある部分</td></tr>
+  </table>
+  <p>モードを切り替えると、選んでいる編集にもすぐ反映されます。</p>
+  <div class="two">
+    <div class="block range">
+      <h3>同じ色／似た色の調整</h3>
+      <dl class="term">
+        <dt>しきい値</dt><dd>どれくらい近い色まで選ぶか。大きいほど広く選びます</dd>
+        <dt>ぼかし</dt><dd>選んだ範囲の境目をなめらかにする幅</dd>
+        <dt>範囲</dt><dd>色を探す場所。「つながった範囲」「パーツの中」「テクスチャ全体」「アバター全体（重いかも）」</dd>
+        <dt>ゴマ塩除去</dt><dd>テクスチャの塗りで混じる細かい点を取り除きます</dd>
+      </dl>
+    </div>
+    <div class="block range">
+      <h3>共通</h3>
+      <dl class="term">
+        <dt>はみ出し幅</dt><dd>パーツのまわりの <span class="nb">UV</span> で使われていない部分まで色を広げる幅（px）。つなぎ目に元の色の線が見えるときは上げます</dd>
+        <dt>範囲を表示</dt><dd>いまの編集の範囲を縞模様で表示。アップロードには影響しません</dd>
+      </dl>
+    </div>
+  </div>
+  <h3>複数のパーツをまとめて変える</h3>
+  <ul>
+    <li><kbd>Ctrl</kbd>＋クリック: 同じ編集にパーツ（点）を足す／外す。離れたパーツを 1 つの色で揃えたいときに使います。</li>
+    <li><kbd>Ctrl</kbd>＋ドラッグ: エリアの中に見えているパーツをまとめて足します（パーツモードのみ）。エリアを描き始めた場所のパーツが主になります。</li>
+    <li><b>隠れている範囲も選ぶ</b>: ON にすると、エリア選択で他のメッシュの奥に隠れたパーツもエリアに入っていれば選びます。</li>
+    <li><b>マテリアルをまたいで選ぶ</b>: ON にすると、別のマテリアル（別のテクスチャ）のパーツも同じ編集に足せます。テクスチャごとの編集が自動で連結され、色や設定はまとめて効きます。</li>
+    <li><b>各点の色を揃える</b>（点が複数のときに表示）: ON では点ごとに明るさの分布を取ってそれぞれを目標の色に揃えます。OFF では全体で 1 つの分布を取るので、点どうしの明るさの差が保たれます。</li>
+  </ul>
+  <div class="foot"><span>4. 範囲の調整</span><span>6</span></div>
+</section>
+
+
+<!-- 4 (続き) -->
+<section class="page">
+  <h2>4. 範囲の調整（続き） <span class="tag range">範囲</span></h2>
+  <h3>誤って選びたくないパーツを外す（除外リスト）</h3>
+  <p>エリア選択などで巻き込みたくないパーツは、その <span class="nb">Renderer</span> を除外リストに登録します。登録した <span class="nb">Renderer</span> は <span class="nb">Scene</span> でクリックしてもエリア選択で囲んでも選ばれません。見た目には影響しません（共有テクスチャに掛かった編集はそのまま映り、アップロードや書き出しも通常どおりです）。</p>
+  <ul>
+    <li>パネルの「範囲」の上にある［除外リスト］を押すと、パネルの隣にオーバーレイが開きます。</li>
+    <li><span class="nb">Hierarchy</span> の <span class="nb">GameObject</span> をドロップ枠にドロップすると、その <span class="nb">GameObject</span> の <span class="nb">Renderer</span>（無ければ配下の <span class="nb">Renderer</span> 全部）が登録されます。</li>
+    <li>一覧の［×］で 1 件ずつ、［すべて外す］でまとめて外せます。<span class="nb">Inspector</span> の「選択しない <span class="nb">Renderer</span>」でも編集できます。</li>
+  </ul>
+  <div class="two">
+  <div><div class="fig" style="padding:4px"><img src="img/fig5.png" alt="Ctrl＋ドラッグのエリア選択" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">図 5</span>　<span class="nb">Ctrl＋ドラッグ</span>のエリア選択。エリアに入ったパーツが縞模様で足される</div></div>
+  <div><div class="fig" style="padding:4px"><img src="img/fig8.png" alt="除外リストのオーバーレイ" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">図 8</span>　除外リストのオーバーレイ。ドロップ枠に <span class="nb">GameObject</span> を落とすと <span class="nb">Renderer</span> 単位で並ぶ。パネルのボタンには件数が出る</div></div>
+  </div>
+  <div class="foot"><span>4. 範囲の調整（続き）</span><span>7</span></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+  <h2>5. 色の調整 <span class="tag color">色</span></h2>
+  <div class="two">
+    <div>
+      <h3>見本行</h3>
+      <p>左が「元の色」（クリックした場所の色）、右が編集中の色（<span class="nb">色 1</span>。グラデーションで<span class="nb">色 2</span> を選んでいれば<span class="nb">色 2</span>）です。カラーコードは直接入力できます。「元の色」の見本かリセットを押すと、色の指定を取り消して元の色に戻します。</p>
+      <h3>カラーホイールとスライダー</h3>
+      <p>外側のリングで色相、内側の四角で彩度と明るさを選びます。下のスライダーは <span class="nb">HSV／RGB</span> を切り替えられます。ホイール左上のスポイトを押してから <span class="nb">Scene</span> のモデルをクリックすると、その場所の元の色を取れます（<kbd>Esc</kbd> でやめる）。</p>
+      <h3>最近使った色</h3>
+      <p>直近 5 色が並びます。押すとその色になります。</p>
+    </div>
+    <div><div class="fig" style="padding:4px"><img src="img/fig6.png" alt="色ブロック" style="max-height:110mm;width:auto"></div><div class="cap"><span class="nb">図 6</span>　色ブロック。上から見本行とカラーコード、スポイト、カラーホイール、<span class="nb">HSV／RGB</span> スライダー、最近使った色、仕上がりの調整</div></div>
+  </div>
+  <div class="block color">
+    <h3>仕上がりの調整</h3>
+    <dl class="term">
+      <dt>陰影の暗さ</dt><dd>陰になる部分をどれだけ暗くするか。右ほど暗く、左ほど明るく。白など明るい色で陰が灰色っぽいときは左へ。「陰影の暗さを自動調整」で色に合った値に戻せます</dd>
+      <dt>陰影の強調</dt><dd>元の陰影が弱い部分（真っ白・真っ黒に近い髪など）で、目標の明るさ範囲いっぱいに陰影を広げます。上げすぎると元のノイズも目立ちます</dd>
+      <dt>不透明度</dt><dd>色変えの不透明度。1 で完全に指定した色になり、下げるほど元の色が残ります</dd>
+    </dl>
+  </div>
+  <div class="note"><b>色が薄く見えるとき</b>　同じ色を指定したのに一部だけ薄い場合、そのマテリアルの側で <span class="nb">lilToon</span> の色調補正などが掛かっていることがあります。<span class="nb">Tocolo</span> の出力は同じでも、シェーダー側の補正で見え方が変わります。</div>
+  <div class="foot"><span>5. 色の調整</span><span>8</span></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+  <h2>6. グラデーション <span class="tag color">色</span></h2>
+  <p>選んでいる範囲に、<span class="nb">Scene</span> 空間の位置で色を変えるグラデーションを入れます。「グラデーション」を ON にすると <span class="nb">Scene</span> に箱が出て、箱の下端の「<span class="nb">色 1</span>」から上端の「<span class="nb">色 2</span>」へ変化します。</p>
+  <ol class="steps">
+    <li><span>色ブロックの下にある「グラデーション」を ON にします。箱は選択範囲を囲む位置に出ます。</span></li>
+    <li><span>箱のハンドルで移動・回転・拡大縮小して、向きと範囲を決めます。箱の高さの方向がグラデーションの方向です。上下に反転させると<span class="nb">色 1</span> と<span class="nb">色 2</span> が入れ替わります。</span></li>
+    <li><span>「<span class="nb">色 2</span>」を選ぶと、見本行・ホイール・陰影の暗さ・不透明度が<span class="nb">色 2</span> のものになります（陰影の強調は<span class="nb">色 1</span> と共通）。<span class="nb">色 2</span> の初期値は元の色です。</span></li>
+  </ol>
+  <div><div class="fig" style="padding:4px"><img src="img/fig7.png" alt="グラデーション ON の Scene" style="max-height:95mm;width:auto"></div><div class="cap"><span class="nb">図 7</span>　グラデーション ON。<span class="nb">Scene</span> の箱を動かして向きと範囲を決める。パネルは「<span class="nb">色 2</span>」を選んだ状態で、<span class="nb">色 1 → 色 2</span> の見本と「箱の中だけ」が下に出る</div></div>
+  <div class="two">
+    <div>
+      <h3>箱の中だけ</h3>
+      <p>ON にすると、箱の上端より上と下端より下は色変えせず元の色のままになり、箱の高さの範囲だけがグラデーションになります。横方向は箱で切りません。OFF では上下の外側も端の色で続きます。</p>
+    </div>
+    <div>
+      <h3>マテリアルをまたぐ連結でも</h3>
+      <p>連結した編集にはグラデーションの設定も共通で効きます。箱は 1 つで、各パーツの位置に応じて混ざります。</p>
+    </div>
+  </div>
+  <div class="foot"><span>6. グラデーション</span><span>9</span></div>
+</section>
+
+<!-- 7 -->
+<section class="page">
+  <h2>7. 対象アバターとオーバーレイの操作</h2>
+  <h3>対象アバターの切り替え</h3>
+  <p>シーンに候補が 2 つ以上あるときだけ、パネルの一番上に「対象: ○○」と［対象アバターを切り替える］が出ます。押すと対象が外れ、候補のボタンか <span class="nb">Scene</span> のクリックで選び直せます。小物単体を対象にしたいときは、<span class="nb">Hierarchy</span> でその小物を選んでからボタンを押してください。</p>
+  <h3>オーバーレイの大きさと位置</h3>
+  <ul>
+    <li>パネルと操作オーバーレイは、右端の縦線（つまみ）を横にドラッグすると 50〜150% で拡大縮小できます。大きさは保存されます。除外リストはパネルに追従します。</li>
+    <li>位置はドラッグで動かせて、次回も同じ位置に出ます。<span class="nb">Scene</span> からはみ出す場合は自動で中に寄せます。</li>
+    <li>パネルが <span class="nb">Scene</span> の高さに収まらないときはホイールを小さくし、それでも収まらなければパネル内がスクロールになります。</li>
+    <li>大きさを元に戻すには <b>Tools &gt; <span class="nb">Tocolo</span> &gt; オーバーレイの大きさをリセット</b>。</li>
+  </ul>
+  <div class="foot"><span>7. 対象アバターとオーバーレイの操作</span><span>10</span></div>
+</section>
+
+<!-- 8 -->
+<section class="page">
+  <h2>8. アップロード時の反映と書き出し <span class="tag pro">Pro</span></h2>
+  <h3>アップロード時に反映</h3>
+  <p>コンポーネントの「ビルド時に適用」が ON なら、アップロード（<span class="nb">NDMF</span> のビルド）のときに色変えをメインテクスチャへ焼き込み、生成したテクスチャと複製したマテリアルへ自動で差し替えます。元のテクスチャ・マテリアルは変更しません。生成テクスチャは元の解像度・圧縮形式・ミップ設定を引き継ぎます。</p>
+  <h3>書き出し</h3>
+  <p><span class="nb">Inspector</span> の「書き出し」を開くと、一番上に「すべてのテクスチャ」の一括ボタン、その下に「テクスチャごとに書き出し」の折りたたみが出ます。書き出したファイルは元のテクスチャの隣に作られ、同じ名前があるときは上書きの確認が出ます。</p>
+  <table>
+    <tr><th>ボタン</th><th>出力</th><th>マテリアル</th><th>編集</th></tr>
+    <tr><td><b>メインに焼き込み</b></td><td><span class="nb">元の名前_recolor.png</span></td><td>「マテリアルを複製して差し替え」が ON なら、複製（<span class="nb">元の名前_recolor.mat</span>）に差し替え。同じ画像を参照する他のプロパティも差し替え</td><td>そのテクスチャの編集は自動で OFF</td></tr>
+    <tr><td><b><span class="nb">2nd</span>に焼き込み</b></td><td><span class="nb">元の名前_recolor2nd.png</span>（選択範囲の周りだけ切り抜き）</td><td><span class="nb">lilToon</span> のマテリアルを複製し、<span class="nb">2nd</span>（使用中なら <span class="nb">3rd</span>）に載せる。<span class="nb">2nd</span>・<span class="nb">3rd</span> とも使用中なら警告して飛ばす</td><td>自動で OFF</td></tr>
+    <tr><td><b>マスク書き出し</b></td><td><span class="nb">元の名前_recolormask.png</span>（白黒、不透明度を反映）</td><td>変更なし</td><td>変更なし</td></tr>
+  </table>
+  <ul>
+    <li>差し替えと編集の無効化は <kbd>Ctrl</kbd>+<kbd>Z</kbd> 1 回で戻せます（書き出したファイルは残ります）。</li>
+    <li>「選択範囲だけ切り抜く（<span class="nb">2nd</span>）」を OFF にすると、<span class="nb">2nd</span> 用の画像を元の大きさのまま書き出します。</li>
+    <li>各ボタンの <kbd>?</kbd> で説明が見出し付きで出ます。</li>
+  </ul>
+  <div><div class="fig" style="padding:4px"><img src="img/fig9.png" alt="Inspector の書き出し欄"></div><div class="cap"><span class="nb">図 9</span>　<span class="nb">Inspector</span> の書き出し欄。上が「すべてのテクスチャ」の一括ボタン（右の ? で見出し付きの説明）、下がテクスチャごとの折りたたみ</div></div>
+  <div class="foot"><span>8. アップロード時の反映と書き出し</span><span>11</span></div>
+</section>
+
+<!-- 9 -->
+<section class="page">
+  <h2>9. 注意事項とトラブルシューティング</h2>
+  <h3>使えない場面</h3>
+  <ul>
+    <li><b>Play モード中</b>は使えません。</li>
+    <li><b><span class="nb">Prefab</span> の編集モード中</b>はプレビューされません（<span class="nb">NDMF</span> のプレビューが対応していないため）。シーンに置いたアバターで使ってください。</li>
+    <li>Project にある <span class="nb">Prefab</span>（シーンに置いていないもの）には付けられません。</li>
+  </ul>
+  <h3>他のツールとの併用</h3>
+  <ul>
+    <li><span class="nb">Tocolo</span> はアップロード時の処理を、他のテクスチャ加工ツール（キメラヘアマスターなど）より先に行います。他ツールの結果の上に色を載せたいときは、先にそのツールでエクスポートしてから <span class="nb">Tocolo</span> で色を変えてください。キメラヘアマスターの対象パーツをクリックすると、パネルにその案内が出ます。</li>
+    <li>アニメーションや他ツールのマテリアル差し替え機能で後から割り当てられるマテリアルには反映されません（<span class="nb">Renderer</span> に最初から付いているマテリアルだけを見ます）。</li>
+    <li>圧縮系のツール（<span class="nb">NDMF</span> の最適化フェーズで動くもの）とは共存できます。<span class="nb">Tocolo</span> の結果がそのまま圧縮の対象になります。</li>
+  </ul>
+  <h3>困ったとき</h3>
+  <table>
+    <tr><th>症状</th><th>原因と対処</th></tr>
+    <tr><td>クリックしても選べない</td><td>メッシュのインポート設定で <span class="nb">Read/Write</span> が無効。<span class="nb">Read/Write</span> を有効にしてください（Console に案内が出ます）。除外リストに入っている <span class="nb">Renderer</span> も選べません</td></tr>
+    <tr><td>選択範囲が全体に広がる</td><td>「同じ色／似た色」でしきい値が大きすぎるか、「範囲」が「テクスチャ全体」になっています。しきい値を下げるか「つながった範囲」にしてください</td></tr>
+    <tr><td>つなぎ目に元の色の線が残る</td><td>「はみ出し幅」を上げてください</td></tr>
+    <tr><td>一部だけ色が薄い・浮く</td><td>マテリアル側の色調補正を確認してください。複数パーツをまとめているなら「各点の色を揃える」と「陰影の強調」を試してください</td></tr>
+    <tr><td>アップロードしても色が変わらない</td><td>体験版では反映されません。<span class="nb">Pro</span> では「ビルド時に適用」が ON かを確認してください</td></tr>
+    <tr><td><span class="nb">Scene</span> の操作が効かなくなった</td><td>オーバーレイのつまみを掴んだままになっている可能性があります。<span class="nb">Scene</span> をクリックするか 2 秒ほど待つと復帰します</td></tr>
+  </table>
+  <div class="foot"><span>9. 注意事項とトラブルシューティング</span><span>12</span></div>
+</section>
+
+<!-- 10 -->
+<section class="page">
+  <h2>10. 用語と操作の一覧</h2>
+  <div class="two">
+    <div>
+      <h3>用語</h3>
+      <dl class="term">
+        <dt>編集</dt><dd>1 回のクリックで作られる「範囲＋色＋設定」のまとまり。<span class="nb">Inspector</span> の編集一覧に並びます</dd>
+        <dt>パーツ</dt><dd><span class="nb">UV</span> でつながったひとかたまり（<span class="nb">UV</span> アイランド）</dd>
+        <dt>連結</dt><dd>マテリアルをまたいで足したときに作られる、テクスチャごとの編集の組。色や設定を共有します</dd>
+        <dt><span class="nb">色 1／色 2</span></dt><dd>目標の色。グラデーションでは下端が<span class="nb">色 1</span>、上端が<span class="nb">色 2</span></dd>
+        <dt>元の色</dt><dd>クリックした場所のテクスチャの色</dd>
+        <dt>範囲を表示</dt><dd>編集の範囲を縞模様で <span class="nb">Scene</span> に重ねる表示</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>操作</h3>
+      <dl class="term">
+        <dt>クリック</dt><dd>範囲を選ぶ（新しい編集）／編集済みの範囲なら選び直し</dd>
+        <dt><kbd>Shift</kbd>＋クリック</dt><dd>常に新しい編集を作る</dd>
+        <dt><kbd>Ctrl</kbd>＋クリック</dt><dd>いまの編集にパーツを足す／外す</dd>
+        <dt><kbd>Ctrl</kbd>＋ドラッグ</dt><dd>エリアの中のパーツをまとめて足す（パーツモード）</dd>
+        <dt><kbd>Esc</kbd></dt><dd>スポイトを中止／<span class="nb">Scene 編集</span>を終了</dd>
+        <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt><dd>元に戻す</dd>
+        <dt>右端のつまみ</dt><dd>オーバーレイの拡大縮小</dd>
+      </dl>
+    </div>
+  </div>
+  <h3>お問い合わせ</h3>
+  <p>不具合報告・機能要望は BOOTH のメッセージ機能でお願いします。更新情報は同梱の CHANGELOG と配布 listing に反映されます。</p>
+  <div class="hue" style="margin-top:8px"></div>
+  <div class="foot"><span>10. 用語と操作の一覧</span><span>13</span></div>
+</section>
+
+</div>
