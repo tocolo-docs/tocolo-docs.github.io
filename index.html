@@ -96,7 +96,7 @@ td.c{ text-align:center; font-weight:700; }
     <span>7</span><span class="d">対象アバターとオーバーレイの操作</span><span>10</span>
     <span>8</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>11</span>
     <span>9</span><span class="d">注意事項とトラブルシューティング</span><span>12</span>
-    <span>10</span><span class="d">用語と操作の一覧</span><span>13</span>
+    <span>10</span><span class="d">用語と操作の一覧</span><span>14</span>
   </div>
   <h3>この説明書の読み方</h3>
   <ul>
@@ -345,6 +345,12 @@ td.c{ text-align:center; font-weight:700; }
     <li>アニメーションや他ツールのマテリアル差し替え機能で後から割り当てられるマテリアルには反映されません（<span class="nb">Renderer</span> に最初から付いているマテリアルだけを見ます）。</li>
     <li>圧縮系のツール（<span class="nb">NDMF</span> の最適化フェーズで動くもの）とは共存できます。<span class="nb">Tocolo</span> の結果がそのまま圧縮の対象になります。</li>
   </ul>
+  <div class="foot"><span>9. 注意事項とトラブルシューティング</span><span>12</span></div>
+</section>
+
+<!-- 9 (続き) -->
+<section class="page">
+  <h2>9. 注意事項とトラブルシューティング（続き）</h2>
   <h3>困ったとき</h3>
   <table>
     <tr><th>症状</th><th>原因と対処</th></tr>
@@ -355,8 +361,10 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td>色を変えた部分がブロック状に潰れる</td><td>生成テクスチャの圧縮が「元と同じ」で、元が <span class="nb">BC1</span>（<span class="nb">DXT1</span>）のときに起きます。コンポーネントの「生成テクスチャの圧縮」を「高画質」にしてください</td></tr>
     <tr><td>アップロードしても色が変わらない</td><td>体験版では反映されません。<span class="nb">Pro</span> では「ビルド時に適用」が ON かを確認してください</td></tr>
     <tr><td><span class="nb">Scene</span> の操作が効かなくなった</td><td>オーバーレイのつまみを掴んだままになっている可能性があります。<span class="nb">Scene</span> をクリックするか 2 秒ほど待つと復帰します</td></tr>
+    <tr><td>アバター容量が増えた</td><td>生成テクスチャの既定「高画質」は <span class="nb">BC1</span> の約 2 倍の容量です。コンポーネントの「生成テクスチャの圧縮」を PC は「元と同じ」、Quest は「標準」にすると元と同程度になります。圧縮系のツールで最適化している場合はそちらの設定が優先されます</td></tr>
   </table>
-  <div class="foot"><span>9. 注意事項とトラブルシューティング</span><span>12</span></div>
+  <div><div class="fig" style="padding:4px"><img src="img/fig10.png" alt="生成テクスチャの圧縮の設定" style="max-height:60mm;width:auto"></div><div class="cap"><span class="nb">図 10</span>　<span class="nb">Inspector</span> の「生成テクスチャの圧縮」。PC と Quest を別々に選べる。既定は高画質。容量を優先するなら PC は「元と同じ」、Quest は「標準」</div></div>
+  <div class="foot"><span>9. 注意事項とトラブルシューティング（続き）</span><span>13</span></div>
 </section>
 
 <!-- 10 -->
@@ -390,7 +398,7 @@ td.c{ text-align:center; font-weight:700; }
   <h3>お問い合わせ</h3>
   <p>不具合報告・機能要望は BOOTH のメッセージ機能でお願いします。更新情報は同梱の CHANGELOG と配布 listing に反映されます。</p>
   <div class="hue" style="margin-top:8px"></div>
-  <div class="foot"><span>10. 用語と操作の一覧</span><span>13</span></div>
+  <div class="foot"><span>10. 用語と操作の一覧</span><span>14</span></div>
 </section>
 
 </div>
