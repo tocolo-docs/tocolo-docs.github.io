@@ -1,14 +1,3 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Tocolo（トコロ）の操作説明書。Scene でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張。">
-<meta property="og:title" content="Tocolo 操作説明書">
-<meta property="og:description" content="Scene でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張の使い方。">
-<meta property="og:type" content="article">
-<meta name="twitter:card" content="summary">
-<style>html{color-scheme:light dark}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Tocolo 操作説明書</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
 <style>
@@ -76,8 +65,6 @@ td.c{ text-align:center; font-weight:700; }
   .fig{ break-inside:avoid; }
 }
 </style>
-</head>
-<body>
 
 <div class="doc">
 
@@ -88,7 +75,7 @@ td.c{ text-align:center; font-weight:700; }
   <div class="hue"></div>
   <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
   <div class="meta">
-    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.1.9</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.1.9</span></span>
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.2.1</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.2.1</span></span>
     <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
     <span>作者</span><span>nekoare</span>
     <span>更新</span><span>2026-09-28</span>
@@ -172,6 +159,7 @@ td.c{ text-align:center; font-weight:700; }
         <dt>プレビューの解像度</dt><dd><span class="nb">Scene</span> プレビューで使う解像度の上限。小さいほど軽く動きます。アップロードと書き出しは元の解像度</dd>
         <dt>プレビューを表示</dt><dd>OFF にすると <span class="nb">Scene</span> の表示が元に戻ります（編集は残ります）</dd>
         <dt>ビルド時に適用</dt><dd>アップロード時に反映するか <span class="tag pro">Pro</span></dd>
+        <dt>生成テクスチャの圧縮</dt><dd>アップロード時・書き出し時に生成するテクスチャの圧縮形式。PC と Quest で別々に選べます（8 章） <span class="tag pro">Pro</span></dd>
       </dl>
     </div>
   </div>
@@ -323,7 +311,8 @@ td.c{ text-align:center; font-weight:700; }
 <section class="page">
   <h2>8. アップロード時の反映と書き出し <span class="tag pro">Pro</span></h2>
   <h3>アップロード時に反映</h3>
-  <p>コンポーネントの「ビルド時に適用」が ON なら、アップロード（<span class="nb">NDMF</span> のビルド）のときに色変えをメインテクスチャへ焼き込み、生成したテクスチャと複製したマテリアルへ自動で差し替えます。元のテクスチャ・マテリアルは変更しません。生成テクスチャは元の解像度・圧縮形式・ミップ設定を引き継ぎます。</p>
+  <p>コンポーネントの「ビルド時に適用」が ON なら、アップロード（<span class="nb">NDMF</span> のビルド）のときに色変えをメインテクスチャへ焼き込み、生成したテクスチャと複製したマテリアルへ自動で差し替えます。元のテクスチャ・マテリアルは変更しません。生成テクスチャは元の解像度とミップ設定を引き継ぎます。圧縮形式はコンポーネントの「生成テクスチャの圧縮」で選びます。</p>
+  <p>「生成テクスチャの圧縮」は PC 用と Quest 用を別々に選べます。既定はどちらも「高画質」（PC は <span class="nb">BC7</span>、Quest は <span class="nb">ASTC 4x4</span>）です。元が <span class="nb">BC1</span>（<span class="nb">DXT1</span>）だとグラデーションがブロック状に潰れることがあるためで、容量は <span class="nb">BC1</span> の約 2 倍になります。容量を優先するなら PC は「元と同じ」、Quest は「標準（<span class="nb">ASTC 6x6</span>）」を選んでください。書き出した <span class="nb">PNG</span> のインポート設定にも同じ選択が反映されます。</p>
   <h3>書き出し</h3>
   <p><span class="nb">Inspector</span> の「書き出し」を開くと、一番上に「すべてのテクスチャ」の一括ボタン、その下に「テクスチャごとに書き出し」の折りたたみが出ます。書き出したファイルは元のテクスチャの隣に作られ、同じ名前があるときは上書きの確認が出ます。</p>
   <table>
@@ -337,7 +326,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>「選択範囲だけ切り抜く（<span class="nb">2nd</span>）」を OFF にすると、<span class="nb">2nd</span> 用の画像を元の大きさのまま書き出します。</li>
     <li>各ボタンの <kbd>?</kbd> で説明が見出し付きで出ます。</li>
   </ul>
-  <div><div class="fig" style="padding:4px"><img src="img/fig9.png" alt="Inspector の書き出し欄"></div><div class="cap"><span class="nb">図 9</span>　<span class="nb">Inspector</span> の書き出し欄。上が「すべてのテクスチャ」の一括ボタン（右の ? で見出し付きの説明）、下がテクスチャごとの折りたたみ</div></div>
+  <div><div class="fig" style="padding:4px"><img src="img/fig9.png" alt="Inspector の書き出し欄" style="max-height:62mm;width:auto"></div><div class="cap"><span class="nb">図 9</span>　<span class="nb">Inspector</span> の書き出し欄。上が「すべてのテクスチャ」の一括ボタン（右の ? で見出し付きの説明）、下がテクスチャごとの折りたたみ</div></div>
   <div class="foot"><span>8. アップロード時の反映と書き出し</span><span>11</span></div>
 </section>
 
@@ -363,6 +352,7 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td>選択範囲が全体に広がる</td><td>「同じ色／似た色」でしきい値が大きすぎるか、「範囲」が「テクスチャ全体」になっています。しきい値を下げるか「つながった範囲」にしてください</td></tr>
     <tr><td>つなぎ目に元の色の線が残る</td><td>「はみ出し幅」を上げてください</td></tr>
     <tr><td>一部だけ色が薄い・浮く</td><td>マテリアル側の色調補正を確認してください。複数パーツをまとめているなら「各点の色を揃える」と「陰影の強調」を試してください</td></tr>
+    <tr><td>色を変えた部分がブロック状に潰れる</td><td>生成テクスチャの圧縮が「元と同じ」で、元が <span class="nb">BC1</span>（<span class="nb">DXT1</span>）のときに起きます。コンポーネントの「生成テクスチャの圧縮」を「高画質」にしてください</td></tr>
     <tr><td>アップロードしても色が変わらない</td><td>体験版では反映されません。<span class="nb">Pro</span> では「ビルド時に適用」が ON かを確認してください</td></tr>
     <tr><td><span class="nb">Scene</span> の操作が効かなくなった</td><td>オーバーレイのつまみを掴んだままになっている可能性があります。<span class="nb">Scene</span> をクリックするか 2 秒ほど待つと復帰します</td></tr>
   </table>
@@ -404,6 +394,3 @@ td.c{ text-align:center; font-weight:700; }
 </section>
 
 </div>
-
-</body>
-</html>
