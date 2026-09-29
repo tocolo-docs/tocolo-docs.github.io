@@ -75,10 +75,10 @@ td.c{ text-align:center; font-weight:700; }
   <div class="hue"></div>
   <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
   <div class="meta">
-    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.2.1</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.2.1</span></span>
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.3.0</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.3.0</span></span>
     <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
     <span>作者</span><span>nekoare</span>
-    <span>更新</span><span>2026-09-28</span>
+    <span>更新</span><span>2026-09-29</span>
   </div>
   <div class="foot"><span><span class="nb">Tocolo</span> 操作説明書</span><span>表紙</span></div>
 </section>
@@ -90,13 +90,13 @@ td.c{ text-align:center; font-weight:700; }
     <span>1</span><span class="d"><span class="nb">Tocolo</span> でできること・体験版と Pro の違い</span><span>3</span>
     <span>2</span><span class="d">導入と削除のしかた</span><span>4</span>
     <span>3</span><span class="d">基本操作（開始・クリック・色を選ぶ・終了）</span><span>5</span>
-    <span>4</span><span class="d">範囲の調整（影響範囲・複数選択・除外リスト）</span><span>6</span>
-    <span>5</span><span class="d">色の調整（<span class="nb">色 1／色 2</span>・陰影・不透明度・スポイト）</span><span>7</span>
-    <span>6</span><span class="d">グラデーション</span><span>9</span>
-    <span>7</span><span class="d">対象アバターとオーバーレイの操作</span><span>10</span>
-    <span>8</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>11</span>
-    <span>9</span><span class="d">注意事項とトラブルシューティング</span><span>12</span>
-    <span>10</span><span class="d">用語と操作の一覧</span><span>14</span>
+    <span>4</span><span class="d">範囲の調整（影響範囲・複数選択・除外リスト・箱の中）</span><span>6</span>
+    <span>5</span><span class="d">色の調整（<span class="nb">色 1／色 2</span>・陰影・不透明度・スポイト）</span><span>9</span>
+    <span>6</span><span class="d">グラデーション</span><span>10</span>
+    <span>7</span><span class="d">対象アバターとオーバーレイの操作</span><span>11</span>
+    <span>8</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>12</span>
+    <span>9</span><span class="d">注意事項とトラブルシューティング</span><span>13</span>
+    <span>10</span><span class="d">用語と操作の一覧</span><span>15</span>
   </div>
   <h3>この説明書の読み方</h3>
   <ul>
@@ -188,10 +188,11 @@ td.c{ text-align:center; font-weight:700; }
 <!-- 4 -->
 <section class="page">
   <h2>4. 範囲の調整 <span class="tag range">範囲</span></h2>
-  <h3>影響範囲（3 モード）</h3>
+  <h3>影響範囲（4 モード）</h3>
   <table>
     <tr><th>モード</th><th>選ばれる範囲</th><th>向いている場面</th></tr>
     <tr><td><b>パーツ</b></td><td>クリックしたパーツ（<span class="nb">UV</span> のひとかたまり）をまるごと</td><td>袖・襟・リボンなど、パーツ単位で変えたいとき</td></tr>
+    <tr><td><b>箱の中</b></td><td>パーツや <span class="nb">UV</span> の切れ目に関係なく <span class="nb">Scene</span> に出る箱の内側を塗る。「マテリアルをまたいで選ぶ」ON なら箱に触れる別テクスチャも連結</td><td>髪のツートン、袖の先だけ、腰から下だけなど、場所で切りたいとき</td></tr>
     <tr><td><b>同じ色</b></td><td>クリックした場所とほぼ同じ色で、途切れずにつながる部分</td><td>模様や線、単色の帯</td></tr>
     <tr><td><b>似た色</b></td><td>近い色を広めに。しきい値を大きめに取った状態</td><td>グラデーションや影のある部分</td></tr>
   </table>
@@ -209,11 +210,18 @@ td.c{ text-align:center; font-weight:700; }
     <div class="block range">
       <h3>共通</h3>
       <dl class="term">
-        <dt>はみ出し幅</dt><dd>パーツのまわりの <span class="nb">UV</span> で使われていない部分まで色を広げる幅（px）。つなぎ目に元の色の線が見えるときは上げます</dd>
+        <dt>はみ出し幅</dt><dd>パーツのまわりの <span class="nb">UV</span> で使われていない部分まで色を広げる幅（px）。つなぎ目に元の色の線が見えるときは上げます。マイナスにすると逆に縁を削ります</dd>
         <dt>範囲を表示</dt><dd>いまの編集の範囲を縞模様で表示。アップロードには影響しません</dd>
       </dl>
     </div>
   </div>
+  <div class="foot"><span>4. 範囲の調整</span><span>6</span></div>
+</section>
+
+
+<!-- 4 (続き) -->
+<section class="page">
+  <h2>4. 範囲の調整（続き） <span class="tag range">範囲</span></h2>
   <h3>複数のパーツをまとめて変える</h3>
   <ul>
     <li><kbd>Ctrl</kbd>＋クリック: 同じ編集にパーツ（点）を足す／外す。離れたパーツを 1 つの色で揃えたいときに使います。</li>
@@ -222,13 +230,6 @@ td.c{ text-align:center; font-weight:700; }
     <li><b>マテリアルをまたいで選ぶ</b>: ON にすると、別のマテリアル（別のテクスチャ）のパーツも同じ編集に足せます。テクスチャごとの編集が自動で連結され、色や設定はまとめて効きます。</li>
     <li><b>各点の色を揃える</b>（点が複数のときに表示）: ON では点ごとに明るさの分布を取ってそれぞれを目標の色に揃えます。OFF では全体で 1 つの分布を取るので、点どうしの明るさの差が保たれます。</li>
   </ul>
-  <div class="foot"><span>4. 範囲の調整</span><span>6</span></div>
-</section>
-
-
-<!-- 4 (続き) -->
-<section class="page">
-  <h2>4. 範囲の調整（続き） <span class="tag range">範囲</span></h2>
   <h3>誤って選びたくないパーツを外す（除外リスト）</h3>
   <p>エリア選択などで巻き込みたくないパーツは、その <span class="nb">Renderer</span> を除外リストに登録します。登録した <span class="nb">Renderer</span> は <span class="nb">Scene</span> でクリックしてもエリア選択で囲んでも選ばれません。見た目には影響しません（共有テクスチャに掛かった編集はそのまま映り、アップロードや書き出しも通常どおりです）。</p>
   <ul>
@@ -241,6 +242,38 @@ td.c{ text-align:center; font-weight:700; }
   <div><div class="fig" style="padding:4px"><img src="img/fig8.png" alt="除外リストのオーバーレイ" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">図 8</span>　除外リストのオーバーレイ。ドロップ枠に <span class="nb">GameObject</span> を落とすと <span class="nb">Renderer</span> 単位で並ぶ。パネルのボタンには件数が出る</div></div>
   </div>
   <div class="foot"><span>4. 範囲の調整（続き）</span><span>7</span></div>
+</section>
+
+<!-- 4 (箱の中) -->
+<section class="page">
+  <h2>4. 範囲の調整（箱の中） <span class="tag range">範囲</span></h2>
+  <p>「箱の中」は、<span class="nb">Scene</span> に出る水色の箱の内側だけを色変えします。パーツや <span class="nb">UV</span> の切れ目に関係なく、箱の面のところで色変えが切れるので、「袖の先だけ」「腰から下だけ」のように場所で区切りたいときに使います。クリックした場所はテクスチャと「元の色」を決めるためだけに使い、範囲は箱で決まります。</p>
+  <ol class="steps">
+    <li><span>影響範囲で「箱の中」を選ぶか、選んでから色を変えたい場所をクリックします。クリックしたパーツを囲む箱が出ます。</span></li>
+    <li><span>箱の中心のギズモで移動・回転・全体の拡大縮小ができます。各面の中央にある橙色の丸をつかむと、その面だけを引いて伸縮できます（マウスが乗ると黄色になります）。</span></li>
+    <li><span>箱を動かしている間は軽い計算で追従し、離した瞬間に切り口を細かく描き直します。</span></li>
+  </ol>
+  <div class="two">
+    <div class="block range">
+      <h3>箱の中の設定</h3>
+      <dl class="term">
+        <dt>面のぼかし</dt><dd>箱の面のところで色変えをなめらかに切る幅。0 だと面でぱきっと切れます（切り口の階段はそれでも自動でならします）</dd>
+        <dt>箱の中の色を揃える</dt><dd>ON にすると、箱に入るパーツごとに明るさの分布を取ってそれぞれを目標の色に揃えます（パーツ複数選択の「各点の色を揃える」と同じ）。OFF（既定）は箱の中全体で 1 つの分布なので、パーツどうしの明るさの差が残ります。ON でも箱を動かしている間は掛からず、離したときに掛かります</dd>
+        <dt>はみ出し幅</dt><dd>他のモードと同じ。マイナスで縁を削ります</dd>
+      </dl>
+    </div>
+    <div>
+      <h3>他の設定との関係</h3>
+      <ul>
+        <li><b>マテリアルをまたいで選ぶ</b>: ON なら、箱に触れる別テクスチャのパーツにも自動で連結して同じ色になります。箱を離したとき・作成時・ON にしたときに増減し、OFF にすると最初のテクスチャだけに戻ります。</li>
+        <li><b>除外リスト</b>: 箱の中では、除外した <span class="nb">Renderer</span> は箱に入っていても色が変わりません（他のモードと違い、見た目にも効きます）。編集中に除外リストを変えるとすぐ反映されます。</li>
+        <li><kbd>Ctrl</kbd>＋クリックやエリア選択でパーツを足す操作は、箱の中では使いません（範囲は箱だけで決まります）。</li>
+        <li>グラデーションと併用できます。グラデーション ON の間は選択の箱（水色）は隠れ、グラデーションの箱だけが出ます。選択の箱を直したいときはグラデーションを一度 OFF にしてください。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><b>切り口の細かさ</b>　切り口はプレビューの解像度のテクセル刻みです。粗く見えるときは「プレビューの解像度」を上げてください。アップロードと書き出しは常に元の解像度で処理されます。</div>
+  <div class="foot"><span>4. 範囲の調整（箱の中）</span><span>8</span></div>
 </section>
 
 <!-- 5 -->
@@ -266,7 +299,7 @@ td.c{ text-align:center; font-weight:700; }
     </dl>
   </div>
   <div class="note"><b>色が薄く見えるとき</b>　同じ色を指定したのに一部だけ薄い場合、そのマテリアルの側で <span class="nb">lilToon</span> の色調補正などが掛かっていることがあります。<span class="nb">Tocolo</span> の出力は同じでも、シェーダー側の補正で見え方が変わります。</div>
-  <div class="foot"><span>5. 色の調整</span><span>8</span></div>
+  <div class="foot"><span>5. 色の調整</span><span>9</span></div>
 </section>
 
 <!-- 6 -->
@@ -275,7 +308,7 @@ td.c{ text-align:center; font-weight:700; }
   <p>選んでいる範囲に、<span class="nb">Scene</span> 空間の位置で色を変えるグラデーションを入れます。「グラデーション」を ON にすると <span class="nb">Scene</span> に箱が出て、箱の下端の「<span class="nb">色 1</span>」から上端の「<span class="nb">色 2</span>」へ変化します。</p>
   <ol class="steps">
     <li><span>色ブロックの下にある「グラデーション」を ON にします。箱は選択範囲を囲む位置に出ます。</span></li>
-    <li><span>箱のハンドルで移動・回転・拡大縮小して、向きと範囲を決めます。箱の高さの方向がグラデーションの方向です。上下に反転させると<span class="nb">色 1</span> と<span class="nb">色 2</span> が入れ替わります。</span></li>
+    <li><span>箱のギズモで移動・回転・拡大縮小し、各面の橙色の丸でその面だけを伸縮して、向きと範囲を決めます。箱の高さの方向がグラデーションの方向です。上下に反転させると<span class="nb">色 1</span> と<span class="nb">色 2</span> が入れ替わります。</span></li>
     <li><span>「<span class="nb">色 2</span>」を選ぶと、見本行・ホイール・陰影の暗さ・不透明度が<span class="nb">色 2</span> のものになります（陰影の強調は<span class="nb">色 1</span> と共通）。<span class="nb">色 2</span> の初期値は元の色です。</span></li>
   </ol>
   <div><div class="fig" style="padding:4px"><img src="img/fig7.png" alt="グラデーション ON の Scene" style="max-height:95mm;width:auto"></div><div class="cap"><span class="nb">図 7</span>　グラデーション ON。<span class="nb">Scene</span> の箱を動かして向きと範囲を決める。パネルは「<span class="nb">色 2</span>」を選んだ状態で、<span class="nb">色 1 → 色 2</span> の見本と「箱の中だけ」が下に出る</div></div>
@@ -289,7 +322,7 @@ td.c{ text-align:center; font-weight:700; }
       <p>連結した編集にはグラデーションの設定も共通で効きます。箱は 1 つで、各パーツの位置に応じて混ざります。</p>
     </div>
   </div>
-  <div class="foot"><span>6. グラデーション</span><span>9</span></div>
+  <div class="foot"><span>6. グラデーション</span><span>10</span></div>
 </section>
 
 <!-- 7 -->
@@ -304,7 +337,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>パネルが <span class="nb">Scene</span> の高さに収まらないときはホイールを小さくし、それでも収まらなければパネル内がスクロールになります。</li>
     <li>大きさを元に戻すには <b>Tools &gt; <span class="nb">Tocolo</span> &gt; オーバーレイの大きさをリセット</b>。</li>
   </ul>
-  <div class="foot"><span>7. 対象アバターとオーバーレイの操作</span><span>10</span></div>
+  <div class="foot"><span>7. 対象アバターとオーバーレイの操作</span><span>11</span></div>
 </section>
 
 <!-- 8 -->
@@ -327,7 +360,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>各ボタンの <kbd>?</kbd> で説明が見出し付きで出ます。</li>
   </ul>
   <div><div class="fig" style="padding:4px"><img src="img/fig9.png" alt="Inspector の書き出し欄" style="max-height:62mm;width:auto"></div><div class="cap"><span class="nb">図 9</span>　<span class="nb">Inspector</span> の書き出し欄。上が「すべてのテクスチャ」の一括ボタン（右の ? で見出し付きの説明）、下がテクスチャごとの折りたたみ</div></div>
-  <div class="foot"><span>8. アップロード時の反映と書き出し</span><span>11</span></div>
+  <div class="foot"><span>8. アップロード時の反映と書き出し</span><span>12</span></div>
 </section>
 
 <!-- 9 -->
@@ -345,7 +378,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>アニメーションや他ツールのマテリアル差し替え機能で後から割り当てられるマテリアルには反映されません（<span class="nb">Renderer</span> に最初から付いているマテリアルだけを見ます）。</li>
     <li>圧縮系のツール（<span class="nb">NDMF</span> の最適化フェーズで動くもの）とは共存できます。<span class="nb">Tocolo</span> の結果がそのまま圧縮の対象になります。</li>
   </ul>
-  <div class="foot"><span>9. 注意事項とトラブルシューティング</span><span>12</span></div>
+  <div class="foot"><span>9. 注意事項とトラブルシューティング</span><span>13</span></div>
 </section>
 
 <!-- 9 (続き) -->
@@ -361,10 +394,11 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td>色を変えた部分がブロック状に潰れる</td><td>生成テクスチャの圧縮が「元と同じ」で、元が <span class="nb">BC1</span>（<span class="nb">DXT1</span>）のときに起きます。コンポーネントの「生成テクスチャの圧縮」を「高画質」にしてください</td></tr>
     <tr><td>アップロードしても色が変わらない</td><td>体験版では反映されません。<span class="nb">Pro</span> では「ビルド時に適用」が ON かを確認してください</td></tr>
     <tr><td><span class="nb">Scene</span> の操作が効かなくなった</td><td>オーバーレイのつまみを掴んだままになっている可能性があります。<span class="nb">Scene</span> をクリックするか 2 秒ほど待つと復帰します</td></tr>
+    <tr><td>書き出しが「一時的なマテリアル」で中止される</td><td>他のツールの <span class="nb">Scene</span> プレビューがマテリアルを差し替えています。そのプレビューを解除してから書き出してください（アップロードには影響しません）</td></tr>
     <tr><td>アバター容量が増えた</td><td>生成テクスチャの既定「高画質」は <span class="nb">BC1</span> の約 2 倍の容量です。コンポーネントの「生成テクスチャの圧縮」を PC は「元と同じ」、Quest は「標準」にすると元と同程度になります。圧縮系のツールで最適化している場合はそちらの設定が優先されます</td></tr>
   </table>
   <div><div class="fig" style="padding:4px"><img src="img/fig10.png" alt="生成テクスチャの圧縮の設定" style="max-height:60mm;width:auto"></div><div class="cap"><span class="nb">図 10</span>　<span class="nb">Inspector</span> の「生成テクスチャの圧縮」。PC と Quest を別々に選べる。既定は高画質。容量を優先するなら PC は「元と同じ」、Quest は「標準」</div></div>
-  <div class="foot"><span>9. 注意事項とトラブルシューティング（続き）</span><span>13</span></div>
+  <div class="foot"><span>9. 注意事項とトラブルシューティング（続き）</span><span>14</span></div>
 </section>
 
 <!-- 10 -->
@@ -398,7 +432,7 @@ td.c{ text-align:center; font-weight:700; }
   <h3>お問い合わせ</h3>
   <p>不具合報告・機能要望は BOOTH のメッセージ機能でお願いします。更新情報は同梱の CHANGELOG と配布 listing に反映されます。</p>
   <div class="hue" style="margin-top:8px"></div>
-  <div class="foot"><span>10. 用語と操作の一覧</span><span>14</span></div>
+  <div class="foot"><span>10. 用語と操作の一覧</span><span>15</span></div>
 </section>
 
 </div>
