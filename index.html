@@ -80,7 +80,7 @@ td.c{ text-align:center; font-weight:700; }
   <div class="hue"></div>
   <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
   <div class="meta">
-    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.5.0</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.5.0</span></span>
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.5.1</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.5.1</span></span>
     <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
     <span>作者</span><span>nekoare</span>
     <span>更新</span><span>2026-10-07</span>
@@ -202,7 +202,7 @@ td.c{ text-align:center; font-weight:700; }
   </table>
   <p>モードを切り替えると、選んでいる編集にもすぐ反映されます。</p>
   <h3>テクスチャの残りを選択</h3>
-  <p>影響範囲のボタンの下、右端の［テクスチャの残りを選択］を押すと、いま選んでいる編集の範囲を、そのテクスチャを使っている所すべてに広げます（はみ出し幅は効きます）。パーツを 1 つずつ足すより早く、テクスチャ全体の色をまとめて変えたいときに使います。<kbd>Ctrl</kbd>+<kbd>Z</kbd> か、影響範囲を選び直すと戻ります。</p>
+  <p>影響範囲がパーツのとき、右端に［テクスチャの残りを選択］が出ます。押すと、そのテクスチャのまだ選んでいないパーツを全部足します（除外リストの <span class="nb">Renderer</span> は除く。「各点の色を揃える」は OFF に）。要らないパーツは <kbd>Ctrl</kbd>＋クリックで外せます。</p>
   <div class="two">
     <div class="block range">
       <h3>パネルに出ている項目（同じ色・似た色）</h3>
