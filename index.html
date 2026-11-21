@@ -81,10 +81,10 @@ td.c{ text-align:center; font-weight:700; }
   <div class="hue"></div>
   <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
   <div class="meta">
-    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.7.0</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.7.0</span></span>
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.7.1</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.7.1</span></span>
     <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
     <span>作者</span><span>nekoare</span>
-    <span>更新</span><span>2026-11-21</span>
+    <span>更新</span><span>2026-11-22</span>
   </div>
   <div class="foot"><span><span class="nb">Tocolo</span> 操作説明書</span><span>表紙</span></div>
 </section>
@@ -454,9 +454,17 @@ td.c{ text-align:center; font-weight:700; }
   <ol class="steps">
     <li><span>色ブロックの下にある「グラデーション」を ON にします。箱は選択範囲を囲む位置に出ます。</span></li>
     <li><span>箱のギズモで移動・回転・拡大縮小し、各面の橙色の丸でその面だけを伸縮して、向きと範囲を決めます。箱の高さの方向がグラデーションの方向で、下の面に「<span class="nb">色 1</span>」、上の面に「<span class="nb">色 2</span>」の札が出ます。上下に反転させると<span class="nb">色 1</span> と<span class="nb">色 2</span> が入れ替わります。</span></li>
-    <li><span>「<span class="nb">色 2</span>」を選ぶと、見本行・ホイール・陰影の暗さ・ガンマ・不透明度が<span class="nb">色 2</span> のものになります（陰影の強調は<span class="nb">色 1</span> と共通）。<span class="nb">色 2</span> の初期値は元の色です。</span></li>
+    <li><span>［<span class="nb">色 1</span>｜<span class="nb">色 2</span>］で「<span class="nb">色 2</span>」を選ぶと、見本行・ホイール・陰影の暗さ・ガンマ・不透明度が<span class="nb">色 2</span> のものになります（陰影の強調は<span class="nb">色 1</span> と共通）。見本の下の右端の▲を押しても同じです。<span class="nb">色 2</span> の初期値は元の色です。</span></li>
   </ol>
-  <div><div class="fig" style="padding:8px"><img src="img/fig7.png" alt="パネルのグラデーションのブロック" style="width:90mm"></div><div class="cap">パネルのグラデーションのブロック。トグルの行に［リセット］、その下に<span class="nb">色 1 → 色 2</span> の見本、ホイールなどで変える色の切り替え（<span class="nb">色 1／色 2</span>）、「箱の中だけ」が並ぶ</div></div>
+  <div class="two" style="grid-template-columns:1fr 40mm"><div><div class="fig" style="padding:8px"><img src="img/fig7.png" alt="パネルのグラデーションのブロック" style="width:64mm"></div><div class="cap">パネルのグラデーションのブロック。トグルの行に［リセット］、その下に<span class="nb">色 1 → 色 2</span> の見本と▲、ホイールなどで変える色の切り替え（<span class="nb">色 1／色 2</span>）、「箱の中だけ」が並ぶ</div></div><div><div class="fig" style="padding:6px"><img src="img/fig7b.png" alt="途中の色を足したグラデーションの箱"></div><div class="cap">途中の色（緑）を足した例。<span class="nb">Scene</span> の箱に緑の枠が出る</div></div></div>
+  <h3>途中の色（3 色以上）</h3>
+  <p>見本の下の▲の無い所を押すと、そこに途中の色を足します（6 色まで）。足した直後はその位置の今の色なので、見た目は変わりません。▲を押して選び、ホイールなどで色を変えます。</p>
+  <ul>
+    <li>途中の▲は左右にドラッグして動かせます。選んでいる間は、見本の右上の［削除］で消せます。</li>
+    <li>同じ位置に 2 色置くと、そこで色がくっきり切り替わります。重なった▲は、押すたびに順に選べます。</li>
+    <li>途中の色が持つのは色だけです。陰影の暗さ・ガンマ・不透明度は<span class="nb">色 1</span> と<span class="nb">色 2</span> から決まるので、選んでいる間は灰色になります。</li>
+    <li><span class="nb">Scene</span> の箱には、途中の色の高さにその色の枠が出ます。</li>
+  </ul>
   <div class="two">
     <div>
       <h3>箱の中だけ</h3>
@@ -464,7 +472,7 @@ td.c{ text-align:center; font-weight:700; }
     </div>
     <div>
       <h3>OFF にしても設定は残る</h3>
-      <p>グラデーションを OFF にしてから ON に戻しても、<span class="nb">色 2</span> と箱はそのまま残ります。最初からやり直したいときは、トグルの行の［リセット］で<span class="nb">色 2</span>（陰影の暗さ・ガンマ・不透明度は<span class="nb">色 1</span> と同じ値）と箱を、ON にした直後の状態に戻します。</p>
+      <p>グラデーションを OFF にしてから ON に戻しても、<span class="nb">色 2</span> と箱はそのまま残ります。最初からやり直したいときは、トグルの行の［リセット］で<span class="nb">色 2</span>（陰影の暗さ・ガンマ・不透明度は<span class="nb">色 1</span> と同じ値）と箱を、ON にした直後の状態に戻します。途中の色は消えます。</p>
     </div>
   </div>
   <p>マテリアルをまたいで連結した編集にも、グラデーションの設定は共通で効きます。箱は 1 つで、各パーツの位置に応じて混ざります。箱を隠したいときは 8 章の小窓「表示切替」を使います。</p>
