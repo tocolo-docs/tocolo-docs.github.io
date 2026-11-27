@@ -81,10 +81,10 @@ td.c{ text-align:center; font-weight:700; }
   <div class="hue"></div>
   <p class="sub"><span class="nb">Scene</span> でクリックした場所の色を、陰影を保ったまま変える Unity エディタ拡張</p>
   <div class="meta">
-    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.7.1</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.7.1</span></span>
+    <span>対応版</span><span><span class="nb">Tocolo</span> <span class="nb">0.8.0</span> ／ <span class="nb">Tocolo Pro</span> <span class="nb">0.8.0</span></span>
     <span>動作環境</span><span><span class="nb">Unity 2022.3</span>、VRChat SDK Avatars 3.7.0 以降、<span class="nb">NDMF</span> 1.14.0 以降</span>
     <span>作者</span><span>nekoare</span>
-    <span>更新</span><span>2026-11-22</span>
+    <span>更新</span><span>2026-11-28</span>
   </div>
   <div class="foot"><span><span class="nb">Tocolo</span> 操作説明書</span><span>表紙</span></div>
 </section>
@@ -97,12 +97,13 @@ td.c{ text-align:center; font-weight:700; }
     <span>3</span><span class="d">基本操作（開始・クリック・色を選ぶ・終了）</span><span>5</span>
     <span>4</span><span class="d">範囲の調整（影響範囲・残りのパーツも選ぶ・複数選択・除外リスト・範囲をなぞって選ぶ・箱の中）</span><span>6</span>
     <span>5</span><span class="d">色の調整（<span class="nb">色 1／色 2</span>・ガンマ・陰影・不透明度・色がずれるとき・色合わせ）</span><span>11</span>
-    <span>6</span><span class="d">グラデーション</span><span>15</span>
-    <span>7</span><span class="d">画像を入れる（シール・箱で貼る）</span><span>16</span>
-    <span>8</span><span class="d">対象アバター・表示切替・編集一覧・オーバーレイの操作</span><span>19</span>
-    <span>9</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>21</span>
-    <span>10</span><span class="d">注意事項とトラブルシューティング</span><span>23</span>
-    <span>11</span><span class="d">用語と操作の一覧</span><span>26</span>
+    <span>6</span><span class="d">グラデーション（箱・毛先グラデ）</span><span>15</span>
+    <span>7</span><span class="d">画像を入れる（シール・箱で貼る）</span><span>17</span>
+    <span>8</span><span class="d">対象アバター・表示切替・編集一覧・オーバーレイの操作</span><span>20</span>
+    <span>9</span><span class="d">Pro: アップロード時の反映と書き出し</span><span>22</span>
+    <span>10</span><span class="d">注意事項とトラブルシューティング</span><span>24</span>
+    <span>11</span><span class="d">用語と操作の一覧</span><span>27</span>
+    <span>12</span><span class="d">更新のお知らせ・通信の詳しい内容</span><span>28</span>
   </div>
   <h3>この説明書の読み方</h3>
   <ul>
@@ -204,7 +205,7 @@ td.c{ text-align:center; font-weight:700; }
   </table>
   <p>モードを切り替えると、選んでいる編集にもすぐ反映されます。</p>
   <h3>残りのパーツも選ぶ</h3>
-  <p>影響範囲がパーツのとき、モードのボタンの下に［＋残りのパーツも選ぶ］が出ます。押すと、そのテクスチャのまだ選んでいないパーツを全部足します（除外リストの <span class="nb">Renderer</span> は除く。「各点の色を揃える」は OFF に）。要らないパーツは <kbd>Ctrl</kbd>＋クリックで外せます。</p>
+  <p>影響範囲がパーツのとき、モードのボタンの下に［＋残りのパーツも選ぶ］が出ます。押すと、そのテクスチャのまだ選んでいないパーツを全部足します（除外リストの <span class="nb">Renderer</span> は除く。「各点の色を揃える」は OFF に）。要らないパーツは <kbd>Ctrl</kbd>＋クリックで外せます。同じ画像を別のメッシュ（前髪と後ろ髪など）でも使っていて、選んでいるメッシュの中だけを足したいときは、右の［＋メッシュ内だけ］を押します。</p>
   <div class="two">
     <div class="block range">
       <h3>パネルに出ている項目（同じ色・似た色）</h3>
@@ -235,9 +236,10 @@ td.c{ text-align:center; font-weight:700; }
   <ul>
     <li><kbd>Ctrl</kbd>＋クリック: 同じ編集にパーツ（点）を足す／外す。離れたパーツを 1 つの色で揃えたいときに使います。</li>
     <li><kbd>Ctrl</kbd>＋ドラッグ: エリアの中に見えているパーツをまとめて足します（パーツモードのみ）。エリアを描き始めた場所のパーツが主になります。</li>
+    <li><kbd>Ctrl</kbd>＋<kbd>Shift</kbd>＋ドラッグ: エリアの中のパーツをまとめて外します（エリアが赤くなります）。全部外すと、その編集ごと消えます。</li>
     <li><b>隠れている範囲も選ぶ</b>（範囲の「▸ 設定」）: ON にすると、エリア選択で他のメッシュの奥に隠れたパーツもエリアに入っていれば選びます。</li>
     <li><b>マテリアルをまたいで選ぶ</b>（範囲の「▸ 設定」）: ON にすると、別のマテリアル（別のテクスチャ）のパーツも同じ編集に足せます。テクスチャごとの編集が自動で連結され、色や設定はまとめて効きます。</li>
-    <li><b>各点の色を揃える</b>（色の「▸ 設定」。点が複数のときに出る）: ON では点ごとに明るさの分布を取ってそれぞれを目標の色に揃えます。OFF では全体で 1 つの分布を取るので、点どうしの明るさの差が保たれます。</li>
+    <li><b>各点の色を揃える</b>（色の「▸ 設定」。点が複数のときに出る）: 点ごとに目標の色に揃えるか、点どうしの明るさの差を保つかを選びます（12 ページ）。</li>
   </ul>
   <h3>誤って選びたくないパーツを外す（除外リスト）</h3>
   <p>エリア選択などで巻き込みたくないパーツは、その <span class="nb">Renderer</span> を除外リストに登録します。登録した <span class="nb">Renderer</span> は <span class="nb">Scene</span> でクリックしてもエリア選択で囲んでも選ばれません。見た目には影響しません（共有テクスチャに掛かった編集はそのまま映り、アップロードや書き出しも通常どおりです）。</p>
@@ -247,7 +249,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>一覧の［×］で 1 件ずつ、［すべて外す］でまとめて外せます。<span class="nb">Inspector</span> の「選択しない <span class="nb">Renderer</span>」でも編集できます。</li>
   </ul>
   <div class="two">
-  <div><div class="fig" style="padding:4px"><img src="img/fig5.png" alt="Ctrl＋ドラッグのエリア選択" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">Ctrl＋ドラッグ</span>のエリア選択。エリアに入ったパーツが縞模様で足される</div></div>
+  <div><div class="fig" style="padding:4px"><img src="img/fig5.png" alt="Ctrl＋ドラッグのエリア選択" style="max-height:70mm;width:auto"></div><div class="cap"><span class="nb">Ctrl＋ドラッグ</span>のエリア選択。入ったパーツが縞模様で足される</div></div>
   <div><div class="fig" style="padding:4px"><img src="img/fig8.png" alt="除外リストのオーバーレイ" style="max-height:70mm;width:auto"></div><div class="cap">除外リストのオーバーレイ。ドロップ枠に <span class="nb">GameObject</span> を落とすと <span class="nb">Renderer</span> 単位で並ぶ。パネルのボタンには件数が出る</div></div>
   </div>
   <div class="foot"><span>4. 範囲の調整（続き）</span><span>7</span></div>
@@ -279,7 +281,7 @@ td.c{ text-align:center; font-weight:700; }
 
 <section class="page">
   <h2>4. 範囲の調整（範囲をなぞって選ぶ・続き） <span class="tag range">範囲</span></h2>
-  <h3>知っておくこと</h3>
+  <h3>なぞれる所と、調整の残り方</h3>
   <ul>
     <li>ブラシが当たるのは、<span class="nb">Scene</span> で見えている面だけです。奥の面をなぞりたいときは、<span class="nb">Hierarchy</span> の目のマークで手前の物を隠すか、手前の物を除外リストに入れてください。</li>
     <li>なぞれるのは、選んでいる編集と同じテクスチャの面だけです（マテリアルをまたいで連結しているなら、そのテクスチャの面も）。ほかのテクスチャの面だけをなぞったときは、パネルに案内が出ます。</li>
@@ -439,7 +441,7 @@ td.c{ text-align:center; font-weight:700; }
       <dt>ガンマ・不透明度</dt><dd>［色を指定］と同じです（11 ページ）</dd>
     </dl>
   </div>
-  <h3>知っておくこと</h3>
+  <h3>お手本を変えた・消したとき</h3>
   <ul>
     <li>お手本の髪を同じアバターの <span class="nb">Tocolo</span> で色変えしていれば、変えた後の色に合わせます。お手本の色を変えると、こちらも付いてきます（お手本側の色合わせは反映しません）。</li>
     <li>お手本を消したり見つからなくなったりしても、前に測った色で合わせ続けます（パネルに案内が出ます）。アップロードもその色です。</li>
@@ -450,7 +452,7 @@ td.c{ text-align:center; font-weight:700; }
 
 <section class="page">
   <h2>6. グラデーション <span class="tag color">色</span></h2>
-  <p>選んでいる範囲に、<span class="nb">Scene</span> 空間の位置で色を変えるグラデーションを入れます。「グラデーション」を ON にすると <span class="nb">Scene</span> に箱が出て、箱の下端の「<span class="nb">色 1</span>」から上端の「<span class="nb">色 2</span>」へ変化します。</p>
+  <p>選んでいる範囲に、<span class="nb">Scene</span> 空間の位置で色を変えるグラデーションを入れます。既定の「箱」では、ON にすると <span class="nb">Scene</span> に箱が出て、下端の「<span class="nb">色 1</span>」から上端の「<span class="nb">色 2</span>」へ変化します（毛先グラデは次のページ）。</p>
   <ol class="steps">
     <li><span>色ブロックの下にある「グラデーション」を ON にします。箱は選択範囲を囲む位置に出ます。</span></li>
     <li><span>箱のギズモで移動・回転・拡大縮小し、各面の橙色の丸でその面だけを伸縮して、向きと範囲を決めます。箱の高さの方向がグラデーションの方向で、下の面に「<span class="nb">色 1</span>」、上の面に「<span class="nb">色 2</span>」の札が出ます。上下に反転させると<span class="nb">色 1</span> と<span class="nb">色 2</span> が入れ替わります。</span></li>
@@ -475,8 +477,38 @@ td.c{ text-align:center; font-weight:700; }
       <p>グラデーションを OFF にしてから ON に戻しても、<span class="nb">色 2</span> と箱はそのまま残ります。最初からやり直したいときは、トグルの行の［リセット］で<span class="nb">色 2</span>（陰影の暗さ・ガンマ・不透明度は<span class="nb">色 1</span> と同じ値）と箱を、ON にした直後の状態に戻します。途中の色は消えます。</p>
     </div>
   </div>
-  <p>マテリアルをまたいで連結した編集にも、グラデーションの設定は共通で効きます。箱は 1 つで、各パーツの位置に応じて混ざります。箱を隠したいときは 8 章の小窓「表示切替」を使います。</p>
+  <p>連結した編集にも、グラデーションは共通で効きます（箱は 1 つで、各パーツの位置に応じて混ざります）。箱は 8 章の小窓「表示切替」で隠せます。</p>
   <div class="foot"><span>6. グラデーション</span><span>15</span></div>
+</section>
+
+<section class="page">
+  <h2>6. グラデーション（毛先グラデ） <span class="tag color">色</span></h2>
+  <p>［箱｜毛先グラデ］で「毛先グラデ」を選ぶと、毛先から色を変えるグラデーションになります。毛先が「<span class="nb">色 1</span>」、毛先から指定の長さだけ離れた所が「<span class="nb">色 2</span>」です。房ごとに毛先を探すので、ツインテールのように毛先があちこちを向く髪でも、箱を合わせずに毛先だけへ色を入れられます。</p>
+  <div class="two" style="grid-template-columns:1fr 64mm">
+    <div>
+      <ol class="steps">
+        <li><span>「グラデーション」を ON にし、［箱｜毛先グラデ］で「毛先グラデ」を選びます。</span></li>
+        <li><span>長さを決めます。［<span class="nb">cm</span>｜<span class="nb">%</span>］で単位を選び、スライダーか数字で入れます。<span class="nb">cm</span> は面に沿った距離、<span class="nb">%</span> は房ごとの長さに対する割合です（短い房も長い房も同じ比率になります）。</span></li>
+        <li><span>長さの行の画鋲のボタンを押してから <span class="nb">Scene</span> の髪をクリックすると、その場所まで毛先の色が入る長さになります。クリックしたままなぞると、なぞった所に合わせて長さが変わります。<kbd>Esc</kbd> でやめます。</span></li>
+        <li><span>色の選び方と途中の色は、箱と同じです（前のページ）。「箱の中だけ」は、毛先グラデの間は出ません（設定は残ります）。</span></li>
+      </ol>
+      <h3>［⇔］で入れ替える（箱でも同じ）</h3>
+      <p>［<span class="nb">色 1</span>｜<span class="nb">色 2</span>］の右の［⇔］で、<span class="nb">色 1</span> と<span class="nb">色 2</span> を入れ替えます。陰影の暗さ・ガンマ・不透明度と、途中の色の並びも一緒に逆になります。</p>
+    </div>
+    <div><div class="fig" style="padding:8px"><img src="img/fig7c.png" alt="パネルの毛先グラデのブロック" style="width:60mm"></div><div class="cap">毛先グラデのブロック。［箱｜毛先グラデ］の下に、長さのスライダー・画鋲のボタン・［<span class="nb">cm</span>｜<span class="nb">%</span>］が並ぶ</div></div>
+  </div>
+  <div class="two" style="grid-template-columns:72mm 1fr">
+    <div><div class="fig" style="padding:4px"><img src="img/fig7d.png" alt="ツインテールに毛先グラデを入れた例" style="width:100%"></div><div class="cap">ツインテールに毛先グラデ（<span class="nb">30%</span>）を入れた例。上の「てっぺん」の点から一番遠い所が毛先になる</div></div>
+    <div>
+      <h3>毛先とてっぺん</h3>
+      <p>房（つながった面のまとまり）の中で、てっぺんから一番遠い所を毛先とします。てっぺんは頭の上に自動で置きます。小窓「表示切替」の［てっぺん］を押すと <span class="nb">Scene</span> に点が出て、動かせます（8 章）。</p>
+      <h3>毛先だけに色を入れるには</h3>
+      <p><span class="nb">色 2</span> の不透明度を 0 にします。毛先から元の色へなめらかに戻ります。</p>
+      <h3>毛先の位置がずれるとき</h3>
+      <p>毛先がはねている髪（外ハネなど）、毛先が頭のほうを向いている髪型（お団子など）、全体が 1 つにつながったウィッグでは、毛先の位置が狙いとずれることがあります。そのときは、てっぺんの点を動かすか、長さを調整してください。</p>
+    </div>
+  </div>
+  <div class="foot"><span>6. グラデーション（毛先グラデ）</span><span>16</span></div>
 </section>
 
 <section class="page">
@@ -489,7 +521,7 @@ td.c{ text-align:center; font-weight:700; }
     </div>
     <div class="block">
       <h3>箱で貼る</h3>
-      <p>「▸ 設定」でオンにします。青緑の箱の正面から、奥へまっすぐ写して貼ります。ネクタイ一面のように範囲いっぱいに貼りたいときや、離れたパーツにまたがって貼りたいときに使います（17 ページ）。</p>
+      <p>「▸ 設定」でオンにします。青緑の箱の正面から、奥へまっすぐ写して貼ります。ネクタイ一面のように範囲いっぱいに貼りたいときや、離れたパーツにまたがって貼りたいときに使います（18 ページ）。</p>
     </div>
   </div>
   <h3>シールの貼り方</h3>
@@ -501,7 +533,7 @@ td.c{ text-align:center; font-weight:700; }
   </ol>
   <div><div class="fig" style="padding:4px"><img src="img/fig11.png" alt="Scene のシール（枠・四隅の丸・まわりの輪が見えるように）" style="max-height:56mm;width:auto"></div><div class="cap">シールで画像を入れた編集。画像のまわりに枠、四隅に大きさを変える丸、外側に回転の輪が出る。画像は範囲の中にだけ貼られる</div></div>
   <div class="note"><b>注意</b>　アップロードに反映されるのは <span class="nb">Tocolo Pro</span> を入れたときだけです（体験版は <span class="nb">Scene</span> で確かめるまで）。画像のファイルを消すと、その編集は反映されず、編集一覧に警告の印が出ます。なめらかに貼るには、メッシュの <span class="nb">Read/Write</span> が有効である必要があります。<span class="nb">Poiyomi</span> の重ね貼り用マテリアルは、アップロード時の <span class="nb">Poiyomi</span> のロックで一緒にロックされます。</div>
-  <div class="foot"><span>7. 画像を入れる</span><span>16</span></div>
+  <div class="foot"><span>7. 画像を入れる</span><span>17</span></div>
 </section>
 
 <section class="page">
@@ -542,7 +574,7 @@ td.c{ text-align:center; font-weight:700; }
       <p>画像・置き場所・「▸ 設定」の中身は、OFF にしてから ON に戻してもそのまま残ります。トグルの行の［リセット］を押すと、シールは最初にクリックした所に面の向き・標準の大きさで、箱は範囲を囲む位置に置き直します（画像と「▸ 設定」の中身はそのまま）。</p>
     </div>
   </div>
-  <div class="foot"><span>7. 画像を入れる（動かし方・箱で貼る）</span><span>17</span></div>
+  <div class="foot"><span>7. 画像を入れる（動かし方・箱で貼る）</span><span>18</span></div>
 </section>
 
 <section class="page">
@@ -560,8 +592,8 @@ td.c{ text-align:center; font-weight:700; }
   <div class="block color">
     <h3>「▸ 設定」の中</h3>
     <dl class="term">
-      <dt>箱で貼る</dt><dd>既定 OFF（シール）。オンで箱からまっすぐ写す貼り方になります（17 ページ）</dd>
-      <dt>向きも面に合わせる</dt><dd>箱で貼るときだけ出ます。既定 ON（17 ページ）</dd>
+      <dt>箱で貼る</dt><dd>既定 OFF（シール）。オンで箱からまっすぐ写す貼り方になります（18 ページ）</dd>
+      <dt>向きも面に合わせる</dt><dd>箱で貼るときだけ出ます。既定 ON（18 ページ）</dd>
       <dt>なめらかに貼る</dt><dd>既定 ON。テクスチャに焼き込まず、画像を貼った面を重ねて直接表示します。<span class="nb">lilToon</span> と、ロックしていない <span class="nb">Poiyomi Toon</span> のマテリアルで使えます。それ以外のマテリアルが範囲に含まれると押せず、焼き込みで貼ります</dd>
       <dt>ノーマルも反映</dt><dd>既定 ON。なめらかに貼るときだけ効きます。服のしわや陰影を画像にも乗せます。<span class="nb">lilToon</span> は元の法線マップを画像の位置に写し直すので、法線マップが 1 枚増えます。<span class="nb">Poiyomi</span> は服と同じ法線マップをそのまま使います</dd>
       <dt>比率を保つ</dt><dd>既定 ON。画像の縦横比を保ちます。OFF で枠（箱）いっぱいに引き伸ばします</dd>
@@ -575,7 +607,7 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td>使えるマテリアル</td><td>すべて</td><td><span class="nb">lilToon</span>・<span class="nb">Poiyomi Toon</span>（ロックなし）</td></tr>
     <tr><td>アップロード時に増えるもの</td><td>生成テクスチャ（色変えと同じ）</td><td>重ねる面のメッシュ・マテリアル・画像（ノーマルも反映なら法線マップも）</td></tr>
   </table>
-  <div class="foot"><span>7. 画像を入れる（設定）</span><span>18</span></div>
+  <div class="foot"><span>7. 画像を入れる（設定）</span><span>19</span></div>
 </section>
 
 <section class="page">
@@ -588,14 +620,14 @@ td.c{ text-align:center; font-weight:700; }
       <p>編集を選んでいる間は、パネルの横に小窓「表示切替」が出ます。<span class="nb">Scene</span> に出す物をボタンで選びます。</p>
       <ul>
         <li><b>［選択範囲］</b>: いまの編集で色が変わる範囲を、縞模様で <span class="nb">Scene</span> に重ねます（アップロードには影響しません）。左の印は縞と同じ橙の斜め縞です。ON／OFF はツール全体で覚えます。</li>
-        <li><b>［箱の中］［グラデーション］［画像］</b>: 使っている箱のぶんだけ並びます。左の四角は箱の色です。押した物だけが出て動かせます（画像は、シールなら枠と丸・輪）。複数押せば一緒に出せます。押していない物は隠れるので、色や画像を確かめたいときは全部外します。</li>
+        <li><b>［箱の中］［グラデーション］［画像］</b>: 使っている箱のぶんだけ並びます。左の四角は箱の色です。押した物だけが出て動かせます（画像は、シールなら枠と丸・輪）。複数押せば一緒に出せます。押していない物は隠れるので、色や画像を確かめたいときは全部外します。毛先グラデのときは、［グラデーション］の代わりに［てっぺん］が出て、てっぺんの点を出し入れします。</li>
         <li>既定では箱は 1 つだけ出ます（画像、グラデーション、箱の中の順に優先）。グラデーションや画像を ON にしたとき、影響範囲を「箱の中」にしたときは、その箱だけに切り替わります。</li>
         <li>箱の選び方は編集ごとで、保存はされません。別の編集を選ぶと既定に戻ります。</li>
       </ul>
     </div>
     <div><div class="fig" style="padding:8px"><img src="img/fig13.png" alt="小窓「表示切替」（［選択範囲］と［画像］が見えるように）" style="width:auto"></div><div class="cap">パネルの横に出る小窓「表示切替」。一番上の［選択範囲］で縞模様、その下のボタンで <span class="nb">Scene</span> に出す箱を選ぶ</div></div>
   </div>
-  <div class="foot"><span>8. 対象アバター・表示切替</span><span>19</span></div>
+  <div class="foot"><span>8. 対象アバター・表示切替</span><span>20</span></div>
 </section>
 
 <section class="page">
@@ -623,7 +655,7 @@ td.c{ text-align:center; font-weight:700; }
   </ul>
   <h3>表示言語</h3>
   <p>右下の「<span class="nb">Tocolo</span>: 操作」オーバーレイの <span class="nb">Language</span> で、日本語・<span class="nb">English</span>・<span class="nb">한국어</span> を切り替えられます。</p>
-  <div class="foot"><span>8. 編集一覧・オーバーレイの操作</span><span>20</span></div>
+  <div class="foot"><span>8. 編集一覧・オーバーレイの操作</span><span>21</span></div>
 </section>
 
 <section class="page">
@@ -639,7 +671,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>1 つの編集の画像を作れなくても、ほかの編集は続けて反映します（<span class="nb">NDMF</span> の報告ウィンドウに案内が出ます）。</li>
     <li>体験版と Pro の版は揃えてください。Pro が古いと、なめらかに貼った画像がアップロードに反映されません（報告ウィンドウに「有料版を更新してください」と出ます）。</li>
   </ul>
-  <div class="foot"><span>9. アップロード時の反映と書き出し</span><span>21</span></div>
+  <div class="foot"><span>9. アップロード時の反映と書き出し</span><span>22</span></div>
 </section>
 
 <section class="page">
@@ -659,7 +691,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>各ボタンの <kbd>?</kbd> で説明が見出し付きで出ます。</li>
   </ul>
   <div><div class="fig" style="padding:4px"><img src="img/fig9.png" alt="Inspector の書き出し欄" style="max-height:46mm;width:auto"></div><div class="cap"><span class="nb">Inspector</span> の書き出し欄。上が「すべてのテクスチャ」の一括ボタン（右の ? で見出し付きの説明）、下がテクスチャごとの折りたたみ</div></div>
-  <div class="foot"><span>9. アップロード時の反映と書き出し（続き）</span><span>22</span></div>
+  <div class="foot"><span>9. アップロード時の反映と書き出し（続き）</span><span>23</span></div>
 </section>
 
 <section class="page">
@@ -685,7 +717,7 @@ td.c{ text-align:center; font-weight:700; }
     <li>アニメーションや他ツールのマテリアル差し替え機能で後から割り当てられるマテリアルには反映されません（<span class="nb">Renderer</span> に最初から付いているマテリアルだけを見ます）。</li>
     <li>圧縮系のツール（<span class="nb">NDMF</span> の最適化フェーズで動くもの）とは共存できます。<span class="nb">Tocolo</span> の結果がそのまま圧縮の対象になります。</li>
   </ul>
-  <div class="foot"><span>10. 注意事項とトラブルシューティング</span><span>23</span></div>
+  <div class="foot"><span>10. 注意事項とトラブルシューティング</span><span>24</span></div>
 </section>
 
 <section class="page">
@@ -706,7 +738,7 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td><span class="nb">Scene</span> に緑や水色の線がたくさん重なって見づらい</td><td><img src="img/fig15.png" alt="Scene ビュー右上の地球儀のアイコン" style="float:right;height:20mm;width:auto;margin:0 0 4px 10px;border-radius:4px"><span class="nb">Scene</span> ビュー右上の地球儀のアイコン（<span class="nb">Gizmos</span>）を押して OFF にすると消えます。アバターのルートを選んでいると、<span class="nb">Unity</span> がアバター全体の選択の輪郭（水色）と、コンポーネントの線（接触の範囲など）を描くためです</td></tr>
     <tr><td><span class="nb">Scene</span> の操作が効かなくなった</td><td>オーバーレイのつまみを掴んだままになっている可能性があります。<span class="nb">Scene</span> をクリックするか 2 秒ほど待つと復帰します</td></tr>
   </table>
-  <div class="foot"><span>10. 注意事項とトラブルシューティング（続き）</span><span>24</span></div>
+  <div class="foot"><span>10. 注意事項とトラブルシューティング（続き）</span><span>25</span></div>
 </section>
 
 <section class="page">
@@ -725,7 +757,7 @@ td.c{ text-align:center; font-weight:700; }
     <tr><td>書き出しが「一時的なマテリアル」で中止される</td><td>他のツールの <span class="nb">Scene</span> プレビューがマテリアルを差し替えています。そのプレビューを解除してから書き出してください（アップロードには影響しません）</td></tr>
     <tr><td>アバター容量が増えた</td><td>生成テクスチャの既定「高画質」は <span class="nb">BC1</span> の約 2 倍の容量です。コンポーネントの「生成テクスチャの圧縮」を PC は「元と同じ」、Quest は「標準」にすると元と同程度になります。なめらかに貼った画像は、重ねる画像（ノーマルも反映なら法線マップも）のぶん増えます。圧縮系のツールで最適化している場合はそちらの設定が優先されます</td></tr>
   </table>
-  <div class="foot"><span>10. 注意事項とトラブルシューティング（続き）</span><span>25</span></div>
+  <div class="foot"><span>10. 注意事項とトラブルシューティング（続き）</span><span>26</span></div>
 </section>
 
 <section class="page">
@@ -753,9 +785,10 @@ td.c{ text-align:center; font-weight:700; }
         <dt><kbd>Shift</kbd>＋クリック</dt><dd>常に新しい編集を作る</dd>
         <dt><kbd>Ctrl</kbd>＋クリック</dt><dd>いまの編集にパーツを足す／外す</dd>
         <dt><kbd>Ctrl</kbd>＋ドラッグ</dt><dd>エリアの中のパーツをまとめて足す（パーツモード）</dd>
+        <dt><kbd>Ctrl</kbd>＋<kbd>Shift</kbd>＋ドラッグ</dt><dd>エリアの中のパーツをまとめて外す</dd>
         <dt>画像をドラッグ</dt><dd>面に沿って動かす</dd>
         <dt>なぞる</dt><dd>範囲の「▸ 設定」の［足す］か［消す］を押してからドラッグ。<kbd>Ctrl</kbd> で足す・消すを入れ替え</dd>
-        <dt><kbd>Esc</kbd></dt><dd>スポイト・お手本選び・なぞる道具・画像のドラッグをやめる／<span class="nb">Scene 編集</span>を終了</dd>
+        <dt><kbd>Esc</kbd></dt><dd>スポイト・お手本選び・毛先グラデの長さ選び・なぞる道具・画像のドラッグをやめる／<span class="nb">Scene 編集</span>を終了</dd>
         <dt><kbd>Ctrl</kbd>+<kbd>Z</kbd></dt><dd>元に戻す</dd>
         <dt>右端のつまみ</dt><dd>オーバーレイの拡大縮小</dd>
       </dl>
@@ -764,9 +797,33 @@ td.c{ text-align:center; font-weight:700; }
   <h3>お問い合わせ</h3>
   <p>不具合報告・機能要望は BOOTH のメッセージ機能でお願いします。更新情報は同梱の CHANGELOG と配布 listing に反映されます。</p>
   <div class="hue" style="margin-top:8px"></div>
-  <div class="foot"><span>11. 用語と操作の一覧</span><span>26</span></div>
+  <div class="foot"><span>11. 用語と操作の一覧</span><span>27</span></div>
 </section>
 
+
+<section class="page">
+  <h2>12. 更新のお知らせ</h2>
+  <p>最新版の更新があると、<span class="nb">Scene 編集</span>中に「操作」の小窓の上へ「最新版〇〇があります」と出ます。困ったときは、まず最新版に更新してみてください。</p>
+  <p>最初に <span class="nb">Scene 編集</span>を始めたとき、お知らせを使うかを聞かれます。［お知らせ機能を使う］を押すと使え、［使わない］を押すと通信もお知らせもしません。どちらかを押すまでは通信しません。</p>
+  <ul>
+    <li>［更新履歴を見る］で、変わった内容を確認できます。お知らせするだけで、勝手に更新はしません。</li>
+    <li>［この版はスキップ］を押すと、その版のお知らせは出なくなります（さらに新しい更新が出たらまた出ます）。</li>
+    <li>［閉じる］を押すと、次に <span class="nb">Scene 編集</span>を始めるまで出なくなります。</li>
+    <li>あとから切り替えるときは、メニューの「<span class="nb">Tools &gt; Tocolo &gt; 更新を確認する</span>」のチェックを付けたり外したりします。</li>
+  </ul>
+  <p><span class="nb">Tocolo Pro</span> を入れている場合も、体験版と同じ版で出しているので、お知らせは 1 つです（両方を更新してください）。</p>
+  <h3 id="通信の詳しい内容">通信の詳しい内容</h3>
+  <p>最新版の更新があるかを確かめるために、インターネットにつなぎます。何を送り、何を受け取り、何を保存するかは次のとおりです。</p>
+  <dl class="term" style="font-size:9.5pt;line-height:1.6">
+    <dt>いつ</dt><dd><span class="nb">Unity</span> の起動時など（スクリプトを読み込み直したとき）に、前回の確認から 24 時間たっていれば 1 回だけ確かめます。［お知らせ機能を使う］を押した直後と、メニューでチェックを付けた直後にも 1 回確かめます。［お知らせ機能を使う］を押す前と、「更新を確認する」のチェックを外しているときは、通信しません。</dd>
+    <dt>どこへ</dt><dd><span class="nb">GitHub Pages</span>（<span class="nb">GitHub</span> 社のサービス）に置いてある、<span class="nb">Tocolo</span> のバージョン一覧のファイル（体験版の <code>index.json</code>）です。<span class="nb">VCC・ALCOM</span> に追加した体験版の URL と同じ、誰でも見られる公開ファイルです。Pro の購入者向けの一覧は読みません。</dd>
+    <dt>送るもの</dt><dd><code>index.json</code> を取得するための、ふつうのリクエスト（HTTPS の GET）だけです。<span class="nb">Tocolo</span> が付け足す情報はありません。通信の仕組み上、IP アドレスと、<span class="nb">Unity</span> が自動で付ける識別文字列の User-Agent（<span class="nb">Unity</span> のバージョンなど）が <span class="nb">GitHub</span> 社に届きます。作者がこれらを見られる仕組みはありません。アバター・プロジェクト・PC の情報や、お使いの <span class="nb">Tocolo</span> のバージョンは送りません。</dd>
+    <dt>受け取るもの</dt><dd><code>index.json</code> の中身です（各バージョンの番号・対応する <span class="nb">Unity</span> のバージョン・ダウンロード先など）。使うのは、バージョン番号と対応する <span class="nb">Unity</span> のバージョンだけです。最新版を探すとき、プレリリース版と、お使いの <span class="nb">Unity</span> で使えない版は入れません。ファイルの中の文章や URL は、表示も開きもしません（ボタンで開くのは、この説明書のページだけです）。</dd>
+    <dt>保存するもの</dt><dd>この PC の <span class="nb">Unity</span> の設定（EditorPrefs）に、最新のバージョン番号・最後に確かめた日時・スキップしたバージョン番号・「更新を確認する」の ON/OFF・お知らせの小窓の位置と大きさを保存します。プロジェクトやアバターには保存しません。</dd>
+    <dt>しないこと</dt><dd>ダウンロードや更新は、自動ではしません。更新するかどうかは、<span class="nb">VCC・ALCOM</span> でご自身で決めてください。アップロードするアバターには何も入りません（<span class="nb">Unity</span> のエディタの中だけで動きます）。インターネットにつながらないときや、確かめるのに失敗したときは、何も表示しません。そのまま今までどおり使えます。</dd>
+  </dl>
+  <div class="foot"><span>12. 更新のお知らせ</span><span>28</span></div>
+</section>
 </div>
 </body>
 </html>
